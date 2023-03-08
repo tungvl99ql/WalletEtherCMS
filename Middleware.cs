@@ -21,7 +21,7 @@ namespace Mid
             else //  controller khác
             {
                 var Token = httpContext.Session.GetString("Token");
-                if (Token == null || Token != "")
+                if (Token == null || Token == "")
                 {
                     await Task.Run(() =>
                            {
@@ -30,7 +30,6 @@ namespace Mid
                            });
                     return;
                 }
-                httpContext.Response.Redirect("Auth");
                 await _next(httpContext);
             }
         }
