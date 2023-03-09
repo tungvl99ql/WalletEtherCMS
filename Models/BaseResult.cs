@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CMSWallet.Models
 {
@@ -68,6 +69,7 @@ namespace CMSWallet.Models
     public class DataTransaction
     {
         public string From { get; set; }
+        public DateTime Createddate { get; set; }
         public string To { get; set; }
         public float Amount { get; set; }
         public string Symbol { get; set; }

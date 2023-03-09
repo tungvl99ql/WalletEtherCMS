@@ -1,4 +1,5 @@
-﻿@{
+﻿@using CMSWallet;
+@{
     List<DataTransaction> ls = Model;
 }
 
@@ -17,6 +18,7 @@
                         <th style="color:white">To</th>
                         <th style="color:white">Amount</th>
                         <th style="color:white">Symbol</th>
+                        <th style="color:white">CreatedDate</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,11 +26,12 @@
                         foreach (var item in ls)
                         {
                             <tr>
-                                <td style="color:white">@item.hash</td>
-                                <td style="color:white">@item.From</td>
-                                <td style="color:white">@item.To</td>
+                                <td onclick="openTx('@item.hash')" style="color:white"> @Exten.Tinyhash(item.hash)</td>
+                                <td style="color:white">@Exten.Tinyhash(item.From)</td>
+                                <td style="color:white">@Exten.Tinyhash(item.To)</td>
                                 <td style="color:white">@item.Amount</td>
-                                <td style="color:white">@item.Symbol  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png" ></td>
+                                <td style="color:white">@item.Symbol  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"></td>
+                                <td style="color:white">@item.Createddate  ></td>
                             </tr>
                         }
                     }
@@ -37,4 +40,13 @@
         </div>
     </div>
 </div>
+<script>
+
+    function openTx(hash){
+        var url = "https://testnet.bscscan.com/tx/" + hash;
+        console.log("url=>",url);
+        window.open(url, '_blank').focus();
+    }
+
+</script>
 
