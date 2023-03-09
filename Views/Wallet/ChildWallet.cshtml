@@ -29,8 +29,7 @@
                                 <td style="color:white">@item.address</td>
                                 <td style="color:white">@item.path</td>
                                 <td>
-                                    <a class="btn btn-danger">Get privatekey</a>
-                                  
+                                    <a class="btn btn-danger" href="@Url.Action("GetPrivateKey","Wallet",new {address=item.address ,path= item.path})">Get privatekey</a>
                                 </td>
                             </tr>
                         }

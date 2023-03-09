@@ -9,6 +9,15 @@ namespace CMSWallet.Models
         public T Data { get; set; }
     }
 
+    public class ResultList<T>
+    {
+        public string Message { get; set; }
+        public bool Success { get; set; }
+        public List<T> Data { get; set; }
+    }
+
+
+
     public class DataLogin
     {
         public string accesstoken { get; set; }
@@ -39,5 +48,28 @@ namespace CMSWallet.Models
     {
         public string address { get; set; }
         public string path { get; set; }
+    }
+
+
+    public class Datainforwallet
+    {
+        public string address { get; set; }
+        public string mnemonic { get; set; }
+        public string privatekey { get; set; }
+    }
+
+    
+    public class DataChildwallet
+    {
+        public string address { get; set; }
+        public string privatekey { get; set; }
+    }
+
+    public class DataTransaction
+    {
+        public string From { get; set; }
+        public float Amount { get; set; }
+        public string Symbol { get; set; }
+        public string hash { get; set; }
     }
 }

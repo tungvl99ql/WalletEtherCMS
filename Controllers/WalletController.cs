@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace CMSWallet.Controllers
@@ -31,7 +33,13 @@ namespace CMSWallet.Controllers
         {
             return View();
         }
-
+        public async Task <IActionResult> InforWallet(string address)
+        {
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/InforWallet", _httpContextAccessor.HttpContext.Session.GetString("Token"), new getlistchildwalletbody { address = address});
+            Debug.WriteLine(response);
+            var res = JsonConvert.DeserializeObject<BaseResult<Datainforwallet>>(response);
+            return View(res.Data);
+        }
         public IActionResult CreateWallet() 
         {
             return View();
@@ -39,6 +47,18 @@ namespace CMSWallet.Controllers
         public IActionResult CreateChildWallet(string address)
         {
             ViewData["address"] = address;
+            return View();
+        }
+
+        public async Task<IActionResult> GetPrivateKey(string address,string path)
+        {
+            //var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            //var response = await CallAPI.Post(appsetting.API_URL + "wallet/Getprivatekey", token, new getprivatekeybody { phrase = phrase,path = path });
+            //Debug.WriteLine(response);
+            //var res = JsonConvert.DeserializeObject<ResultList<DataChildwallet>>(response);
+            //Debug.WriteLine(res);
+            ViewData["address"] = address; 
+            ViewData["path"] = path;
             return View();
         }
 
@@ -66,8 +86,31 @@ namespace CMSWallet.Controllers
             var response = await CallAPI.Post(appsetting.API_URL + "wallet/CreateWalletchild", _httpContextAccessor.HttpContext.Session.GetString("Token"), new createchildwalletbody { phrase = phrase,amount = amount});
             Debug.WriteLine(response);
 
-            var res = JsonConvert.DeserializeObject<BaseResult<DataCreatewallet>>(response);
+            var res = JsonConvert.DeserializeObject<ResultList<string>>(response);
             return Json(res);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> PostGetPrivateKey(string phrase, string path,string address)
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/Getprivatekey", token, new getprivatekeybody { phrase = phrase, path = path });
+            Debug.WriteLine(response);
+            var res = JsonConvert.DeserializeObject<ResultList<DataChildwallet>>(response);
+            if (res.Data[0].address != address)
+            {
+                return Json(new BaseResult<string>
+                {
+                    Data = null,
+                    Success = false,
+                    Message = "Không trùng địa chỉ ví với phrase!"
+                });
+            }
+            else
+            {
+                return Json(res);
+            }
+            
         }
     }
     public class getlistchildwalletbody
@@ -78,5 +121,10 @@ namespace CMSWallet.Controllers
     {
         public string phrase { get; set; } 
         public int amount { get; set; }
+    }
+    public class getprivatekeybody
+    {
+        public string phrase { get; set; }
+        public string path { get; set; }
     }
 }

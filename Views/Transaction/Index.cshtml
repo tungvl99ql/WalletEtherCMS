@@ -1,0 +1,38 @@
+﻿@{
+    List<DataTransaction> ls = Model;
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">History Transactions</h4>
+        <p class="card-description">
+            @*Add class <code>.table</code>*@
+        </p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="">
+                        <th style="color:white">TxHash</th>
+                        <th style="color:white">From</th>
+                        <th style="color:white">Amount</th>
+                        <th style="color:white">Symbol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in ls)
+                        {
+                            <tr>
+                                <td style="color:white">@item.hash</td>
+                                <td style="color:white">@item.From</td>
+                                <td style="color:white">@item.Amount</td>
+                                <td style="color:white">@item.Symbol  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png" ></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

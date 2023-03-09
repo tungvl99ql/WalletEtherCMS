@@ -1,0 +1,25 @@
+﻿@{
+    Datainforwallet addressP = Model;
+}
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Infor Wallet</h4>
+            <div class="form-group">
+                <label for="exampleInputUsername1">AddressParent</label>
+                <input type="text" class="form-control" id="exampleInputUsername1" style="color:black" disabled value="@addressP.address">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Mnemonic Phrase</label>
+                <input type="text" class="form-control" id="phrase" style="color:black" disabled value="@addressP.mnemonic">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Private Key</label>
+                <input type="text" class="form-control" id="amount" style="color:black" disabled value="@addressP.privatekey">
+            </div>
+
+            @*<button onclick="Create()" class="btn btn-primary mr-2">Create </button>
+            <button class="btn btn-dark">Cancel</button>*@
+        </div>
+    </div>
+</div>

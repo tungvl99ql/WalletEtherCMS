@@ -1,0 +1,60 @@
+﻿@{
+    string addressP = Model;
+}
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Get private key Wallet</h4>
+            <div class="form-group">
+                <label for="exampleInputUsername1">Address</label>
+                <input type="text" class="form-control" id="address" style="color:black" disabled value="@ViewData["address"]">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputUsername1">Path</label>
+                <input type="text" class="form-control" id="path" style="color:black" disabled value="@ViewData["path"]">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Phrase</label>
+                <input type="text" class="form-control" id="phrase" placeholder=". . .">
+            </div>
+            
+
+            <button onclick="Create()" class="btn btn-primary mr-2">Get key </button>
+            <button class="btn btn-dark">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Create() {
+        //var Url = @Html.Raw(Json.Serialize(ViewData["address"]));
+        let phrase = document.getElementById("phrase").value;
+        let path = document.getElementById("path").value;
+        let address = document.getElementById("address").value;
+
+        let param = {
+            'phrase': phrase,
+            'path': path,
+            'address': address
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("PostGetPrivateKey")",
+            data: param,
+            async: true,
+            success: function (data) {
+                //console.log("data", data.data[0].privatekey)
+                if (data.success) {
+                    //var direct = @ViewData["address"];
+                    //var url = "/Wallet/ChildWallet?address=" + Url;
+                    //location.href = url;
+                    
+                    alert("Privatkey=> "+ data.data[0].privatekey)
+                } else {
+                    alert(data.message)
+                }
+            }
+        });
+    }
+</script>
