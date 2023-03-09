@@ -1,0 +1,41 @@
+﻿
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Create Child Wallet</h4>
+            
+            <div class="form-group">
+                <label for="exampleInputEmail1">Phrase</label>
+                <input type="text" class="form-control" id="phrase" placeholder=". . .">
+            </div>
+           
+            <button onclick="Import()" class="btn btn-primary mr-2">Import </button>
+            <button class="btn btn-dark">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Import() {
+        let phrase = document.getElementById("phrase").value;
+
+        let param = {
+            'phrase': phrase,
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("PostImportWallet")",
+            data: param,
+            async: true,
+            success: function (data) {
+                console.log("data", data)
+                if (data.success) {
+                    alert(data.message)
+                } else {
+                    alert(data.message)
+                }
+            }
+        });
+    }
+</script>

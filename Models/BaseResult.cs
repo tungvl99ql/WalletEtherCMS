@@ -68,6 +68,7 @@ namespace CMSWallet.Models
     public class DataTransaction
     {
         public string From { get; set; }
+        public string To { get; set; }
         public float Amount { get; set; }
         public string Symbol { get; set; }
         public string hash { get; set; }
