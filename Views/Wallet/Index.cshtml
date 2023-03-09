@@ -1,0 +1,39 @@
+﻿@{
+    List<listwallet> ls = Model;
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">List Wallet</h4>
+        <p class="card-description">
+            @*Add class <code>.table</code>*@
+        </p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="">
+                        <th style="color:white">Address</th>
+                        <th style="color:white">Child wallet</th>
+                        <th style="color:white">Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in ls)
+                        {
+                            <tr>
+                                <td style="color:white">@item.address</td>
+                                <td style="color:white">@item.child</td>
+                                <td>
+                                    <a class="btn btn-success" href="@Url.Action("CreateChildWallet","Wallet",new {address=item.address })">Create child WL</a>
+                                    <a class="btn btn-warning" href="@Url.Action("ChildWallet","Wallet",new {address=item.address })">List child WL</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CMSWallet.Models;
 using Mid;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace CMSWallet
 {
@@ -34,6 +36,7 @@ namespace CMSWallet
                 options.Cookie.IsEssential = true;
                 options.Cookie.Name = "TWallet.yourApp.Session";
             });
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

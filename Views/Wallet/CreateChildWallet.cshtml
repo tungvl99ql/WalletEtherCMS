@@ -1,0 +1,53 @@
+﻿@{
+    string addressP = Model;
+}
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Create Child Wallet</h4>
+            <div class="form-group">
+                <label for="exampleInputUsername1">AddressParent</label>
+                <input type="text" class="form-control" id="exampleInputUsername1" style="color:black" disabled value="@ViewData["address"]">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Phrase</label>
+                <input type="text" class="form-control" id="phrase" placeholder=". . .">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Amount</label>
+                <input type="number" class="form-control" id="amount" placeholder="0">
+            </div>
+
+            <button onclick="Create()" class="btn btn-primary mr-2">Create </button>
+            <button class="btn btn-dark">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Create() {
+
+        let phrase = document.getElementById("phrase").value;
+        let amount = document.getElementById("amount").value;
+
+        let param = {
+            'phrase': phrase,
+            'amount': amount
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("CreateChild")",
+            data: param,
+            async: true,
+            success: function (data) {
+                console.log("data", data)
+                if (data.success) {
+                    location.href = '/Wallet/ChildWallet/' + @ViewData["address"];
+                } else {
+                    alert(data.message)
+                }
+            }
+        });
+    }
+</script>

@@ -719,3 +719,7 @@ E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\refint\CMSWallet.dll
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\CMSWallet.pdb
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\CMSWallet.genruntimeconfig.cache
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\ref\CMSWallet.dll
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Wallet\Index.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Wallet\CreateWallet.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Wallet\ChildWallet.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Wallet\CreateChildWallet.cshtml.g.cs

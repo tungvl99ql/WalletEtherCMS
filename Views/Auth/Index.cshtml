@@ -94,7 +94,12 @@
             async: true,
             success: function (data) {
                 console.log("data", data)
-               
+                var datajson = JSON.parse(data);
+                if (datajson.Success) {
+                    location.href = '/';
+                }else{
+                    alert(datajson.Message)
+                }
             }});
     }
 
