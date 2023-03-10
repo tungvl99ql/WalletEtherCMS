@@ -13,6 +13,7 @@
                 <thead>
                     <tr class="">
                         <th style="color:white">Address</th>
+                        <th style="color:white">API</th>
                         <th style="color:white">Child wallet</th>
                         <th style="color:white">Option</th>
                     </tr>
@@ -24,10 +25,12 @@
                             <tr>
                                 <td style="color:white">@item.address</td>
                                 <td style="color:white">@item.child</td>
+                                <td style="color:white">@item.child</td>
                                 <td>
-                                    <a class="btn btn-success" href="@Url.Action("CreateChildWallet","Wallet",new {address=item.address })">Create child WL</a>
-                                    <a class="btn btn-warning" href="@Url.Action("ChildWallet","Wallet",new {address=item.address })">List child WL</a>
+                                    <a class="btn btn-success" href="@Url.Action("CreateChildWallet","Wallet",new {address=item.address })">Create user WL</a>
+                                    <a class="btn btn-warning" href="@Url.Action("ChildWallet","Wallet",new {address=item.address })">List user WL</a>
                                     <a class="btn btn-danger" href="@Url.Action("InforWallet","Wallet",new {address=item.address })">Infor</a>
+                                    <a class="btn btn-light" href="@Url.Action("ApiCallbackWallet","Wallet",new {address=item.address })">API callback</a>
                                 </td>
                             </tr>
                         }

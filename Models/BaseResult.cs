@@ -75,4 +75,11 @@ namespace CMSWallet.Models
         public string Symbol { get; set; }
         public string hash { get; set; }
     }
+
+    public class DataApicallback
+    {
+        public string address { get; set; }
+        public string urlcallback { get; set; }
+        public string bodycontent { get; set; }
+    }
 }

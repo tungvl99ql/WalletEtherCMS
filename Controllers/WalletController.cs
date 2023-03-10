@@ -33,6 +33,15 @@ namespace CMSWallet.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> ApiCallbackWallet(string address)
+        {
+
+            var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/GetApiCallback", token, new geturlcallbackbody { address = address});
+            Debug.WriteLine(response);
+            var res = JsonConvert.DeserializeObject<BaseResult<DataApicallback>>(response);
+            return View(res.Data);
+        }
         public async Task <IActionResult> InforWallet(string address)
         {
             var response = await CallAPI.Post(appsetting.API_URL + "wallet/InforWallet", _httpContextAccessor.HttpContext.Session.GetString("Token"), new getlistchildwalletbody { address = address});
@@ -122,6 +131,15 @@ namespace CMSWallet.Controllers
             return Json(res);
 
         }
+
+        [HttpPost]
+        public async Task<JsonResult> SetCallback(string address, string url,string body)
+        {
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/SetApiCallback", _httpContextAccessor.HttpContext.Session.GetString("Token"), new DataApicallback { address = address.Trim(),urlcallback = url,bodycontent = body });
+            Debug.WriteLine(response);
+            var res = JsonConvert.DeserializeObject<BaseResult<DataCreatewallet>>(response);
+            return Json(res);
+        }
     }
     public class getlistchildwalletbody
     {
@@ -141,5 +159,10 @@ namespace CMSWallet.Controllers
     public class importwalletbody
     {
         public string phrase { get; set; }
+    }
+
+    public class geturlcallbackbody
+    {
+        public string address { get; set; }
     }
 }
