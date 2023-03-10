@@ -721,3 +721,4 @@ E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\refint\CMSWallet.dll
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\CMSWallet.pdb
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\CMSWallet.genruntimeconfig.cache
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\ref\CMSWallet.dll
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Wallet\ApiCallbackWallet.cshtml.g.cs
