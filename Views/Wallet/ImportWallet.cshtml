@@ -3,14 +3,17 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Import Wallet</h4>
-            
+            <div class="form-group">
+                <label for="exampleInputEmail1">Project Name</label>
+                <input type="text" class="form-control" id="projectname" placeholder=". . .">
+            </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Phrase</label>
                 <input type="text" class="form-control" id="phrase" placeholder=". . .">
             </div>
            
             <button onclick="Import()" class="btn btn-primary mr-2">Import </button>
-            <button class="btn btn-dark">Cancel</button>
+            @*<button class="btn btn-dark">Cancel</button>*@
         </div>
     </div>
 </div>
@@ -18,24 +21,30 @@
 <script>
     function Import() {
         let phrase = document.getElementById("phrase").value;
+        let projectname = document.getElementById("projectname").value;
 
         let param = {
             'phrase': phrase,
+            'projectname': projectname,
         };
 
-        $.ajax({
-            type: 'POST',
-            url: "@Url.Action("PostImportWallet")",
-            data: param,
-            async: true,
-            success: function (data) {
-                console.log("data", data)
-                if (data.success) {
-                    alert(data.message)
-                } else {
-                    alert(data.message)
+        if(projectname.length > 1){
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("PostImportWallet")",
+                data: param,
+                async: true,
+                success: function (data) {
+                    console.log("data", data)
+                    if (data.success) {
+                        alert(data.message)
+                    } else {
+                        alert(data.message)
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            alert("project name not null");
+        }
     }
 </script>

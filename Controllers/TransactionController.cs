@@ -19,7 +19,7 @@ namespace CMSWallet.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var response = await CallAPI.Post(appsetting.API_URL + "transaction/GetTransaction", _httpContextAccessor.HttpContext.Session.GetString("Token"), new gettransactionbody { Page = 0 }); ;
+            var response = await CallAPI.Post(appsetting.API_URL + "transaction/GetTransaction", _httpContextAccessor.HttpContext.Session.GetString("Token"), new gettransactionbody { Page = 1 }); ;
             Debug.WriteLine(response);
 
             var res = JsonConvert.DeserializeObject<ResultList<DataTransaction>>(response);

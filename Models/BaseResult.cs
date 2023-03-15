@@ -36,8 +36,15 @@ namespace CMSWallet.Models
     }
     public class listwallet
     {
+        public string projectname { get; set; }
         public string address { get; set; }
+        public string url { get; set; }
         public int child { get; set; }
+        public double usdt { get; set; }
+        public double usdc { get; set; }
+        public double busd { get; set; }
+        public double dai { get; set; }
+        public double usdt_testnet { get; set; }
     }
 
 
@@ -49,6 +56,15 @@ namespace CMSWallet.Models
     {
         public string address { get; set; }
         public string path { get; set; }
+        public Value value { get; set; }
+    }
+    public class Value
+    {
+        public double USDT { get; set; }
+        public double USDC { get; set; }
+        public double BUSD { get; set; }
+        public double DAI { get; set; }
+        public double USDT_TESTNET { get; set; }
     }
 
 

@@ -17,7 +17,11 @@
                 <thead>
                     <tr class="">
                         <th style="color:white">Address</th>
-                        <th style="color:white">Path</th>
+                        <th style="color:white">USDT  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"></th>
+                        <th style="color:white">USDC  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"></th>
+                        <th style="color:white">BUSD  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/4687.png"></th>
+                        <th style="color:white">USDT-TN  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"></th>
+                        @*<th style="color:white">Path</th>*@
                         <th style="color:white">Option</th>
                     </tr>
                 </thead>
@@ -27,7 +31,10 @@
                         {
                             <tr>
                                 <td style="color:white">@item.address</td>
-                                <td style="color:white">@item.path</td>
+                                <td style="color:white">@item.value.USDT $</td>
+                                <td style="color:white">@item.value.USDC $</td>
+                                <td style="color:white">@item.value.BUSD $</td>
+                                <td style="color:white">@item.value.USDT_TESTNET $</td>
                                 <td>
                                     <a class="btn btn-danger" href="@Url.Action("GetPrivateKey","Wallet",new {address=item.address ,path= item.path})">Get privatekey</a>
                                 </td>
@@ -37,5 +44,39 @@
                 </tbody>
             </table>
         </div>
+
+    </div>
+
+</div>
+<div style="margin-top:20px">
+    @* <a class="mdi mdi-arrow-left"></a>
+    <h3>3</h3>
+
+    <a class="mdi mdi-arrow-right"></a>*@
+
+    <div class="template-demo">
+        @if (int.Parse(ViewData["page"].ToString()) > 1)
+        {
+            <a href="@Url.Action("ChildWallet","Wallet",new {address= ViewData["address"] ,page = int.Parse(ViewData["page"].ToString()) -1 })" class="mdi mdi-arrow-left"></a>
+        }
+        else
+        {
+            <a class="mdi mdi-arrow-left"></a>
+        }
+        <a class="">@ViewData["page"]</a>
+        <a href="@Url.Action("ChildWallet","Wallet",new {address= ViewData["address"] ,page = int.Parse(ViewData["page"].ToString())+1 })" class="mdi mdi-arrow-right"></a>
     </div>
 </div>
+
+<script>
+    function NextorPrePage(v){
+        var address = @Html.Raw(Json.Serialize(ViewData["address"]));
+        var page = @ViewData["page"];
+        if(v == -1){
+            console.log("pre page : ", address, page);
+            
+        }else{
+            console.log("next page: ", address, page);
+        }
+    }
+</script>                    

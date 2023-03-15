@@ -71,20 +71,22 @@ namespace CMSWallet.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ChildWallet(string address) //  danh sach wallet child
+        public async Task<IActionResult> ChildWallet(string address,int page = 1) //  danh sach wallet child
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
-            var response = await CallAPI.Post(appsetting.API_URL + "wallet/ListWalletChild", token, new getlistchildwalletbody { address = address });
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/ListWalletChild", token, new getlistchildwalletbody { address = address,page = page });
             Debug.WriteLine(response);
             var res = JsonConvert.DeserializeObject<BaseResult<Datalistwalletchild>>(response);
             Debug.WriteLine(res);
+            ViewData["address"] = address;
+            ViewData["page"] = page;
             return View(res.Data.listwalletchild);
         }
 
-        [HttpGet] 
-        public async Task<JsonResult> Create()
+        [HttpPost] 
+        public async Task<JsonResult> Create(string projectname)
         {
-            var response = await CallAPI.Get(appsetting.API_URL + "wallet/CreateWallet", _httpContextAccessor.HttpContext.Session.GetString("Token"));
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/CreateWallet", _httpContextAccessor.HttpContext.Session.GetString("Token"), new newwallet { projectname = projectname });
             var res = JsonConvert.DeserializeObject<BaseResult<DataCreatewallet>>(response);
             return Json(res);
         }
@@ -122,10 +124,10 @@ namespace CMSWallet.Controllers
             
         }
         [HttpPost]
-        public async Task<JsonResult> PostImportWallet(string phrase)
+        public async Task<JsonResult> PostImportWallet(string phrase,string projectname)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
-            var response = await CallAPI.Post(appsetting.API_URL + "wallet/ImportWallet", token, new importwalletbody { phrase = phrase});
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/ImportWallet", token, new importwalletbody { phrase = phrase, projectname  = projectname });
             Debug.WriteLine(response);
             var res = JsonConvert.DeserializeObject<BaseResult<DataCreatewallet>>(response);
             return Json(res);
@@ -144,6 +146,7 @@ namespace CMSWallet.Controllers
     public class getlistchildwalletbody
     {
         public string address { get; set; }
+        public int page { get; set; }
     }
     public class createchildwalletbody
     {
@@ -159,10 +162,15 @@ namespace CMSWallet.Controllers
     public class importwalletbody
     {
         public string phrase { get; set; }
+        public string projectname { get; set; }
     }
 
     public class geturlcallbackbody
     {
         public string address { get; set; }
+    }
+    public class newwallet
+    {
+        public string projectname { get; set; }
     }
 }

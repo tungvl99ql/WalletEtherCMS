@@ -5,26 +5,56 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Create Wallet</h4>
-            <button onclick="Create()" class="btn btn-primary mr-2">Create new wallet</button>
-                <button class="btn btn-dark">Cancel</button>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Project Name</label>
+                <input type="text" class="form-control" id="projectname" placeholder=". . .">
+            </div>
+            <button onclick="Create()" class="btn btn-primary mr-2">Create new project - wallet</button>
+                @*<button class="btn btn-dark">Cancel</button>*@
         </div>
     </div>
 </div>
 
 <script>
+    //function Create() {
+    //    $.ajax({
+    //        type: 'GET',
+    //        url: "@Url.Action("Create")",
+    //        async: true,
+    //        success: function (data) {
+    //            console.log("data", data)
+    //            if (data.success  ) {
+    //                location.href = '/Wallet';
+    //            } else {
+    //                alert(data.message)
+    //            }
+    //        }
+    //    });
+    //}
+
     function Create() {
-        $.ajax({
-            type: 'GET',
-            url: "@Url.Action("Create")",
-            async: true,
-            success: function (data) {
-                console.log("data", data)
-                if (data.success  ) {
-                    location.href = '/Wallet';
-                } else {
-                    alert(data.message)
+        let prjname = document.getElementById("projectname").value;
+
+       if(prjname.length > 1){
+            let param = {
+                'projectname': prjname,
+            };
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("Create")",
+                data: param,
+                async: true,
+                success: function (data) {
+                    console.log("data", data)
+                    if (data.success) {
+                        location.href = '/Wallet';
+                    } else {
+                        alert(data.message)
+                    }
                 }
-            }
-        });
+            });
+       }else{
+           alert("Project name not null!");
+       }
     }
 </script>
