@@ -728,3 +728,6 @@ E:\GITHUB\WalletEtherCMS\bin\Debug\net5.0\refs\System.Xml.XPath.XDocument.dll
 E:\GITHUB\WalletEtherCMS\bin\Debug\net5.0\refs\WindowsBase.dll
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Wallet\ImportWallet.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Wallet\ApiCallbackWallet.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\WithDraw\Index.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\WithDraw\FilterWalletView.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\WithDraw\FilterWallet.cshtml.g.cs

@@ -34,6 +34,12 @@ namespace CMSWallet.Models
     {
         public List<listwallet> listwallet { get; set; }
     }
+
+    public class Walletvalue
+    {
+        public string address { get; set; }
+        public double value { get; set; }
+    }
     public class listwallet
     {
         public string projectname { get; set; }
@@ -88,8 +94,10 @@ namespace CMSWallet.Models
         public DateTime Createddate { get; set; }
         public string To { get; set; }
         public float Amount { get; set; }
-        public string Symbol { get; set; }
+        public string token { get; set; }
         public string hash { get; set; }
+        public bool callbackstatus { get; set; }
+        public string? callbackresponse { get; set; }
     }
 
     public class DataApicallback

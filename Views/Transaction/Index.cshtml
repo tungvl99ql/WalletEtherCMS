@@ -18,6 +18,7 @@
                         <th style="color:white">To</th>
                         <th style="color:white">Amount</th>
                         <th style="color:white">Token</th>
+                        <th style="color:white">Api status</th>
                         <th style="color:white">CreatedDate</th>
                     </tr>
                 </thead>
@@ -26,11 +27,34 @@
                         foreach (var item in ls)
                         {
                             <tr>
-                                <td onclick="openTx('@item.hash')" style="color:white"> @Exten.Tinyhash(item.hash)</td>
+                                <td><a style="color:white" onclick="openTx('@item.hash')"> @Exten.Tinyhash(item.hash)</a> </td>
                                 <td style="color:white">@Exten.Tinyhash(item.From)</td>
                                 <td style="color:white">@Exten.Tinyhash(item.To)</td>
                                 <td style="color:white">@item.Amount</td>
-                                <td style="color:white">@item.Symbol  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"></td>
+                                @if(item.token == "USDT_TESTNET" || item.token == "USDT"){
+                                    <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"></td>
+                                }
+                                else if (item.token == "USDC")
+                                {
+                                    <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"></td>
+                                }
+                                else if (item.token == "BUSD")
+                                {
+                                    <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/4687.png"></td>
+                                }
+                                else if (item.token == "DAI")
+                                {
+                                    <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/4943.png"></td>
+                                }
+
+                                @if (item.callbackstatus)
+                                {
+                                    <td> <a class="btn btn-success">@item.callbackstatus</a></td>
+                                   
+                                }else{
+                                    <td><a class="btn btn-danger">@item.callbackstatus</a></td>
+                                }
+
                                 <td style="color:white">@item.Createddate  ></td>
                             </tr>
                         }

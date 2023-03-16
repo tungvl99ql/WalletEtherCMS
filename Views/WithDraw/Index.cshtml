@@ -1,0 +1,51 @@
+﻿@using CMSWallet;
+@{
+    List<listwallet> ls = Model;
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">List Wallet</h4>
+        <p class="card-description">
+            @*Add class <code>.table</code>*@
+        </p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="">
+                        <th style="color:white">Project</th>
+                        <th style="color:white">Address</th>
+                        @*<th style="color:white">API</th>*@
+                        <th style="color:white">USDT  <img style="margin-left:5px; height:20px;width:20px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"></th>
+                        <th style="color:white">USDC  <img style="margin-left:5px; height:20px;width:20px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"></th>
+                        <th style="color:white">BUSD  <img style="margin-left:5px; height:20px;width:20px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/4687.png"></th>
+                        <th style="color:white">USDT-TN  <img style="margin-left:5px; height:20px;width:20px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"></th>
+                        <th style="color:white">Child wallet</th>
+                        <th style="color:white">Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in ls)
+                        {
+                            <tr>
+                                <td style="color:white">@item.projectname</td>
+                                <td style="color:white"> @Exten.Tinyhash(item.address)</td>
+                                <td style="color:white">@item.usdt  <a class=" mdi mdi-wallet" data-toggle="tooltip" data-placement="top" title="Withdraw usdt" href="@Url.Action("CreateChildWallet","WithDraw",new {address=item.address })"></a> </td>
+                                <td style="color:white">@item.usdc</td>
+                                <td style="color:white">@item.busd</td>
+                                <td style="color:white">@item.usdt_testnet</td>
+                                <td style="color:white">@item.child</td>
+                                <td>
+                                    <a class="btn btn-danger mdi mdi-wallet-travel" data-toggle="tooltip" data-placement="top" title="Infor wallet" href="@Url.Action("FilterWalletView","WithDraw",new {address=item.address })"></a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

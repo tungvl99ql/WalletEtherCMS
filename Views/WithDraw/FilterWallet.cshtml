@@ -1,0 +1,44 @@
+﻿@using CMSWallet;
+@{
+    List<Walletvalue> ls = Model;
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Balance </h4>
+        <p class="card-description">
+            @*Add class <code>.table</code>*@
+        </p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="">
+                        <th style="color:white">Wallet</th>
+                        <th style="color:white">Wallet balance (@ViewData["tokenname"])</th>
+                        <th style="color:white">Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in ls)
+                        {
+                            <tr>
+                                <td style="color:white"> @item.address </td>
+                                <td style="color:white">@item.value $</td>
+                                <td>
+                                    <a class="btn btn-light" data-toggle="tooltip" data-placement="top" title="Api callback transaction" href="@Url.Action("ApiCallbackWallet","Wallet",new {address=item.address })">Withdraw to project wallet</a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+
+    
+</script>
+

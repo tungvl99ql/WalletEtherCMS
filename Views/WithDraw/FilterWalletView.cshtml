@@ -1,0 +1,78 @@
+﻿
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Filter -  (@ViewData["address"])</h4>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Value ></label>
+                <input type="number" class="form-control" id="value" placeholder="0">
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Token</label>
+                <div class="col-sm-2">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="USDT" checked=""> USDT <i class="input-helper"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="USDC"> USDC <i class="input-helper"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="BUSD"> BUSD <i class="input-helper"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="USDT_TESTNET"> USDT-TN <i class="input-helper"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary mr-2" onclick="filter()">  >Filter</button>
+        </div>
+    </div>
+</div>
+<script>
+
+    function filter(){
+        const options = document.getElementsByName("membershipRadios");
+        const value = document.getElementById("value").value;
+
+        var token = "";
+
+        for (const option of options) {
+            if (option.checked) {
+                //console.log(option.value);
+                token = option.value;
+                break;
+            }
+        }
+
+        console.log(value,token);
+
+        var _address = @Html.Raw(Json.Serialize(ViewData["address"]));
+        var _tokenname = token;
+        var _value = value;
+        var _page = 1;
+
+        //var url = '@Url.Action("FilterWallet", "WithDraw", new {address = "_address", tokenname = "_tokenname", value = "_value", page = "_page" })'.replace('_address', _address).replace('_tokenname', _tokenname).replace('_value', _value).replace('_page',_page);
+
+        var url = '@Url.Action("FilterWallet", "WithDraw")';
+        var fullUrl = url + '?address=' + _address + '&tokenname=' + _tokenname + '&value=' + _value + '&page=' + _page;
+        window.location.href = fullUrl;
+
+    }
+
+
+</script>
