@@ -34,7 +34,16 @@
                                 <td style="color:white">@item.address</td>
                                 <td style="color:white">@item.value $</td>
                                 <td style="color:white">@item.token</td>
-                                <td style="color:white">@item.status</td>
+                                @if (item.status)
+                                {
+                                    <td> <a class="btn btn-success">@item.status</a></td>
+
+                                }
+                                else
+                                {
+                                    <td><a class="btn btn-danger">@item.status</a></td>
+                                }
+
                                 <td style="color:white">@item.message</td>
                                 <td style="color:white">@item.createddate</td>
                                

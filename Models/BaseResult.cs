@@ -35,6 +35,12 @@ namespace CMSWallet.Models
         public string? txhash { get; set; }
         public string message { get; set; }
     }
+    public class UpdateBalanceOne
+    {
+        public string address { get; set; }
+        public double balance { get; set; }
+        public string? message { get; set; }
+    }
     public class Datalistwallet
     {
         public List<listwallet> listwallet { get; set; }

@@ -35,6 +35,9 @@ namespace CMSWallet.Controllers
             var response = await CallAPI.Post(appsetting.API_URL + "wallet/FilterWallet", token, new filterwalletbody { address = address, token = tokenname, value = value, page = page });
             var res = JsonConvert.DeserializeObject<ResultList<Walletvalue>>(response);
             ViewData["tokenname"] = tokenname;
+            ViewData["address"] = address;
+            ViewData["page"] = page;
+            ViewData["value"] = value;
             return View(res.Data);
         }
 
@@ -74,8 +77,8 @@ namespace CMSWallet.Controllers
         [HttpPost]
         public async Task<JsonResult> UpdateBalance(string address,string tokenname)
         {
-            var response = await CallAPI.Post(appsetting.API_URL + "wallet/UpdateBalanceOne", _httpContextAccessor.HttpContext.Session.GetString("Token"), new withdrawonebody { address = address, token = tokenname, value = value });
-            var res = JsonConvert.DeserializeObject<BaseResult<Withdrawone>>(response);
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/UpdateBalanceOne", _httpContextAccessor.HttpContext.Session.GetString("Token"), new updatebalanceonebody { address = address, token = tokenname });
+            var res = JsonConvert.DeserializeObject<BaseResult<UpdateBalanceOne>>(response);
             return Json(res);
         }
     }
@@ -97,6 +100,12 @@ namespace CMSWallet.Controllers
     {
         public string address { get; set; }
         public int page { get; set; }
+    }
+
+    public class updatebalanceonebody
+    {
+        public string address { get; set; }
+        public string token { get; set; }
     }
 }
 

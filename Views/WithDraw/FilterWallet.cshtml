@@ -24,10 +24,13 @@
                         {
                             <tr>
                                 <td style="color:white"> @item.address </td>
-                                <td style="color:white">@item.value $</td>
+                                <td id="@item.address" style="color:white">@item.value $</td>
                                 <td>
-                                    <a class="btn btn-light" data-toggle="tooltip" data-placement="top" title="Api callback transaction" onclick="Withdrawone(@item.value,'@item.address')">Withdraw to project wallet</a>
-                                    <a class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Api callback transaction" onclick="UpdateBalanceOne('@item.address')">update balance</a>
+                                    <a style="display: -webkit-inline-box;" class="btn btn-light" data-toggle="tooltip" data-placement="top" title="Withdraw to project wallet" onclick="Withdrawone(@item.value,'@item.address')">
+                                        <div id="loading-@item.address" style="width:15px;height:15px; display:none" class="spinner-border" role="status">
+                                        </div> Withdraw to project wallet
+                                    </a>
+                                    <a class="btn btn-success" data-toggle="tooltip" data-placement="top" title="update balance" onclick="UpdateBalanceOne('@item.address')">update balance</a>
 
                                 </td>
                             </tr>
@@ -40,9 +43,9 @@
 </div>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Launch demo modal
-</button>
+</button>*@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -66,9 +69,31 @@
         </div>
     </div>
 </div>
+
+<div style="margin-top:20px">
+    @* <a class="mdi mdi-arrow-left"></a>
+    <h3>3</h3>
+
+    <a class="mdi mdi-arrow-right"></a>*@
+
+    <div class="template-demo">
+        @if (int.Parse(ViewData["page"].ToString()) > 1)
+        {
+            <a href="@Url.Action("FilterWallet","WithDraw",new {address= ViewData["address"],tokenname= ViewData["tokenname"] ,value= ViewData["value"],page = int.Parse(ViewData["page"].ToString()) -1 })" class="mdi mdi-arrow-left"></a>
+        }
+        else
+        {
+            <a class="mdi mdi-arrow-left"></a>
+        }
+        <a class="">@ViewData["page"]</a>
+        <a href="@Url.Action("FilterWallet","WithDraw",new {address= ViewData["address"] ,tokenname= ViewData["tokenname"] ,value= ViewData["value"],page = int.Parse(ViewData["page"].ToString())+1 })" class="mdi mdi-arrow-right"></a>
+    </div>
+</div>
 <script>
     var txhash = "";
     function Withdrawone(_value, _address) {
+
+        document.getElementById("loading-" + _address).style.display = "block";
 
         var myModal = document.getElementById("exampleModal");
         var modal = new bootstrap.Modal(myModal);
@@ -91,6 +116,7 @@
             data: param,
             async: true,
             success: function (data) {
+                document.getElementById("loading-" + _address).style.display = "none";
                 console.log("data", data)
                 if (data.success) {
                     content.innerHTML = data.data.message;
@@ -132,10 +158,11 @@
             success: function (data) {
                 console.log("data", data)
                 if (data.success) {
-                    
-
+                    alert("cập nhật số dư thành công!");
+                    var contentValue = document.getElementById(data.data.address);
+                    contentValue.innerHTML = data.data.balance + " $";
                 } else {
-                   
+                    alert(data.data.message);
 
                 }
             }
