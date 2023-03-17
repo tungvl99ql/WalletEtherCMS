@@ -1,0 +1,82 @@
+﻿
+@{
+    List<historywithdraw> ls = Model;
+}
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">List Wallet</h4>
+        <p class="card-description">
+            @*Add class <code>.table</code>*@
+        </p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="">
+                        <th style="color:white">From</th>
+                        <th style="color:white">Value</th>
+                        <th style="color:white">Token</th>
+                        <th style="color:white">Status</th>
+                        <th style="color:white">Message</th>
+                        <th style="color:white">Date</th>
+                        @*<th style="color:white">USDT  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"></th>
+                        <th style="color:white">USDC  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"></th>
+                        <th style="color:white">BUSD  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/4687.png"></th>
+                        <th style="color:white">USDT-TN  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"></th>*@
+                        @*<th style="color:white">Path</th>*@
+                        @*<th style="color:white">Option</th>*@
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in ls)
+                        {
+                            <tr>
+                                <td style="color:white">@item.address</td>
+                                <td style="color:white">@item.value $</td>
+                                <td style="color:white">@item.token</td>
+                                <td style="color:white">@item.status</td>
+                                <td style="color:white">@item.message</td>
+                                <td style="color:white">@item.createddate</td>
+                               
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+<div style="margin-top:20px">
+    @* <a class="mdi mdi-arrow-left"></a>
+    <h3>3</h3>
+
+    <a class="mdi mdi-arrow-right"></a>*@
+
+    <div class="template-demo">
+        @if (int.Parse(ViewData["page"].ToString()) > 1)
+        {
+            <a href="@Url.Action("HistoryWalletTX","WithDraw",new {address= ViewData["address"] ,page = int.Parse(ViewData["page"].ToString()) -1 })" class="mdi mdi-arrow-left"></a>
+        }
+        else
+        {
+            <a class="mdi mdi-arrow-left"></a>
+        }
+        <a class="">@ViewData["page"]</a>
+        <a href="@Url.Action("HistoryWalletTX","WithDraw",new {address= ViewData["address"] ,page = int.Parse(ViewData["page"].ToString())+1 })" class="mdi mdi-arrow-right"></a>
+    </div>
+</div>
+
+<script>
+    function NextorPrePage(v) {
+        var address = @Html.Raw(Json.Serialize(ViewData["address"]));
+        var page = @ViewData["page"];
+        if (v == -1) {
+            console.log("pre page : ", address, page);
+
+        } else {
+            console.log("next page: ", address, page);
+        }
+    }
+</script>                    

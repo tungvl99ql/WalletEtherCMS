@@ -30,6 +30,11 @@ namespace CMSWallet.Models
         public string mnemonic { get; set; }
         public string privatekey { get; set; }
     }
+    public class Withdrawone
+    {
+        public string? txhash { get; set; }
+        public string message { get; set; }
+    }
     public class Datalistwallet
     {
         public List<listwallet> listwallet { get; set; }
@@ -39,6 +44,22 @@ namespace CMSWallet.Models
     {
         public string address { get; set; }
         public double value { get; set; }
+    }
+    public class listwallethistorywithdraw
+    {
+        public string projectname { get; set; }
+        public string address { get; set; }
+        public int countTx { get; set; }
+    }
+    public class historywithdraw
+    {
+        public string address { get; set; }
+        public string to { get; set; }
+        public double value { get; set; }
+        public string token { get; set; }
+        public bool status { get; set; }
+        public string message { get; set; }
+        public DateTime createddate { get; set; }
     }
     public class listwallet
     {

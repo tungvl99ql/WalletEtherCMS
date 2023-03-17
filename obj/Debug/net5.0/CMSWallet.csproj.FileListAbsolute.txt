@@ -731,3 +731,5 @@ E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Wallet\ApiCallbackWallet.c
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\WithDraw\Index.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\WithDraw\FilterWalletView.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\WithDraw\FilterWallet.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\WithDraw\ListWalletTX.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\WithDraw\HistoryWalletTX.cshtml.g.cs

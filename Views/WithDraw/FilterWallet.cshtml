@@ -26,7 +26,8 @@
                                 <td style="color:white"> @item.address </td>
                                 <td style="color:white">@item.value $</td>
                                 <td>
-                                    <a class="btn btn-light" data-toggle="tooltip" data-placement="top" title="Api callback transaction" href="@Url.Action("ApiCallbackWallet","Wallet",new {address=item.address })">Withdraw to project wallet</a>
+                                    <a class="btn btn-light" data-toggle="tooltip" data-placement="top" title="Api callback transaction" onclick="Withdrawone(@item.value,'@item.address')">Withdraw to project wallet</a>
+                                    <a class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Api callback transaction" onclick="UpdateBalanceOne('@item.address')">update balance</a>
 
                                 </td>
                             </tr>
@@ -37,8 +38,108 @@
         </div>
     </div>
 </div>
-<script>
 
-    
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Noti</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 id="content">
+                    AHIHI
+                </h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button onclick="viewTX()" style="display: none;" id="viewtx" type="button" class="btn btn-primary">View tx</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var txhash = "";
+    function Withdrawone(_value, _address) {
+
+        var myModal = document.getElementById("exampleModal");
+        var modal = new bootstrap.Modal(myModal);
+
+        var content = document.getElementById("content");
+
+
+
+        var tokenname = `@Html.Raw(ViewData["tokenname"])`;
+
+        let param = {
+            'address': _address,
+            'value': _value,
+            'tokenname': tokenname
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("WithdrawOne")",
+            data: param,
+            async: true,
+            success: function (data) {
+                console.log("data", data)
+                if (data.success) {
+                    content.innerHTML = data.data.message;
+                    document.getElementById("viewtx").style.display = "block";
+                    txhash = data.data.txhash;
+                    modal.show();
+
+                } else {
+                    content.innerHTML = data.data.message;
+                    document.getElementById("viewtx").style.display = "none";
+                    modal.show();
+
+                }
+            }
+        });
+    }
+
+    function viewTX() {
+        var URL = "https://testnet.bscscan.com/tx/" + txhash;
+        window.open(URL, '_blank');
+    }
+
+
+    function UpdateBalanceOne(_address) {
+
+
+        var tokenname = `@Html.Raw(ViewData["tokenname"])`;
+
+        let param = {
+            'address': _address,
+            'tokenname': tokenname
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("UpdateBalance")",
+            data: param,
+            async: true,
+            success: function (data) {
+                console.log("data", data)
+                if (data.success) {
+                    
+
+                } else {
+                   
+
+                }
+            }
+        });
+    }
 </script>
 
