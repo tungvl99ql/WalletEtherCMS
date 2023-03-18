@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "1ba3709f-101c-4262-bf18-15ba4df30a3b": {
+      "ProjectGuid": "1ba3709f-101c-4262-bf18-15ba4df30a3b",
+      "DisplayName": "CMSWallet",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

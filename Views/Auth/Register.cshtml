@@ -28,28 +28,32 @@
                 <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
                     <div class="card col-lg-4 mx-auto">
                         <div class="card-body px-5 py-5">
-                            <h3 class="card-title text-left mb-3">Login</h3>
-                                <div class="form-group">
-                                    <label>Username *</label>
-                                    <input id="username" type="text" class="form-control p_input">
-                                </div>
-                                <div class="form-group">
-                                    <label>Password *</label>
-                                    <input id="password" type="text" class="form-control p_input">
-                                </div>
-                                @*<div class="form-group d-flex align-items-center justify-content-between">
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input"> Remember me
-                                        </label>
-                                    </div>
-                                    <a href="#" class="forgot-pass">Forgot password</a>
-                                </div>*@
-                                <div class="text-center">
-                                    <button onclick="Login()" class="btn btn-primary btn-block enter-btn">Login</button>
-                                </div>
-                                <p class="sign-up">Don't have an Account?<a href="@Url.Action("Register","Auth")"> Sign Up</a></p>
-                            
+                            <h3 class="card-title text-left mb-3">Register</h3>
+                            <div class="form-group">
+                                <label>Username *</label>
+                                <input id="username" type="text" class="form-control p_input">
+                            </div>
+                            <div class="form-group">
+                                <label>Password *</label>
+                                <input id="password" type="text" class="form-control p_input">
+                            </div>
+                            <div class="form-group">
+                                <label>Re-Password *</label>
+                                <input id="repassword" type="text" class="form-control p_input">
+                            </div>
+                            <!--<div class="form-group d-flex align-items-center justify-content-between">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input"> Remember me
+                                    </label>
+                                </div>-->
+                               @* <a href="#" class="forgot-pass">Forgot password</a>*@
+                            <!--</div>-->
+                            <div class="text-center">
+                                <button onclick="Register()" class="btn btn-primary btn-block enter-btn">Register</button>
+                            </div>
+                            <p class="sign-up">Don't have an Account?<a href="@Url.Action("Index","Auth")"> Sign In</a></p>
+
                         </div>
                     </div>
                 </div>
@@ -77,28 +81,32 @@
 
 <script>
 
-    function Login() {
+    function Register() {
      let username = document.getElementById("username").value;
         let password = document.getElementById("password").value;
+        let repassword = document.getElementById("repassword").value;
         console.log("username", username)
         console.log("password", password)
         let param = {
             'username': username,
-            'password': password
+            'password': password,
+            'repassword': repassword,
         };
 
          $.ajax({
             type: 'POST',
-            url: "@Url.Action("Login")",
+            url: "@Url.Action("postRegister")",
             data: param,
             async: true,
             success: function (data) {
                 console.log("data", data)
-                var datajson = JSON.parse(data);
-                if (datajson.Success) {
-                    location.href = '/';
+                //var datajson = JSON.parse(data);
+                //console.log(datajson);
+                if (data.success) {
+                    alert(data.message)
+                    //location.href = '/';
                 }else{
-                    alert(datajson.Message)
+                    alert(data.message)
                 }
             }});
     }

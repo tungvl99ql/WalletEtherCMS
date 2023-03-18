@@ -14,7 +14,7 @@ namespace Mid
         public async Task Invoke(HttpContext httpContext)
         {
             var requestPath = httpContext.Request.Path.ToString();
-            if (requestPath == "/Auth" || requestPath == "/Auth/Login") //  vào controller login
+            if (requestPath == "/Auth" || requestPath == "/Auth/Login" || requestPath == "/Auth/Register" || requestPath == "/Auth/postRegister" || requestPath.Contains("Api")) //  vào controller login
             {
                 await _next(httpContext);
             }

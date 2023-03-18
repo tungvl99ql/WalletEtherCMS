@@ -22,6 +22,12 @@ namespace CMSWallet.Controllers
             return View();
         }
 
+        public IActionResult Register()
+        {
+            Debug.WriteLine("API=>" + appsetting.API_URL);
+            return View();
+        }
+
         [HttpPost]
         public async Task<JsonResult> Login(string username, string password)
         {
@@ -36,6 +42,27 @@ namespace CMSWallet.Controllers
             return Json(response);
         }
 
+        [HttpPost]
+        public async Task<JsonResult> postRegister(string username, string password, string repassword)
+        {
+
+            if (password != repassword)
+            {
+                return Json(new BaseResult<DataLogin>
+                {
+                    Data = null,
+                    Message = "mật khẩu không khớp!",
+                    Success = false,
+                });
+            }
+
+            var response = await CallAPI.PostAsync(appsetting.API_URL + "users/register", new Regbody { username = username, password = password });
+            //Debug.WriteLine(response);
+            var res = JsonConvert.DeserializeObject<BaseResult<DataReg>>(response);
+            
+            return Json(res);
+        }
+
     }
 
     public class Loginbody
@@ -43,5 +70,10 @@ namespace CMSWallet.Controllers
        public string username { get; set; }
        public string password { get; set; }
     }
-    
+    public class Regbody
+    {
+        public string username { get; set; }
+        public string password { get; set; }
+    }
+
 }

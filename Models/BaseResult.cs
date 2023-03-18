@@ -17,7 +17,15 @@ namespace CMSWallet.Models
         public List<T> Data { get; set; }
     }
 
-
+    public class DataReg
+    {
+        public string username { get; set; }
+        public string password { get; set; }
+        public int role { get; set; }
+        public int maxwallet { get; set; }
+        public int maxwalletchild { get; set; }
+        public string _id { get; set; }
+    }
 
     public class DataLogin
     {
