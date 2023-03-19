@@ -10,10 +10,10 @@ namespace CMSWallet.Controllers
         public async Task<JsonResult> test([FromBody] testbody _testbody)
         {
             //Debug.WriteLine("hash=>", ts.hash);
-            //Debug.WriteLine("value=>", ts.value);
+            //Debug.WriteLine("value=>", ts.value); 
             //Debug.WriteLine("address=>", ts.address);
 
-            return Json("OK");
+            return Json("NO");
         }
     }
     public class testbody
