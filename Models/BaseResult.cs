@@ -114,9 +114,9 @@ namespace CMSWallet.Models
         public string address { get; set; }
         public string mnemonic { get; set; }
         public string privatekey { get; set; }
+        public Value value { get; set; }
     }
 
-    
     public class DataChildwallet
     {
         public string address { get; set; }

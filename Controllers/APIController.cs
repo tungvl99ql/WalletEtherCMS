@@ -13,7 +13,7 @@ namespace CMSWallet.Controllers
             //Debug.WriteLine("value=>", ts.value); 
             //Debug.WriteLine("address=>", ts.address);
 
-            return Json("NO");
+            return Json("OK");
         }
     }
     public class testbody

@@ -26,10 +26,23 @@ namespace CMSWallet.Controllers
             //return Json(res);
             return View(res.Data);
         }
+
+        [HttpPost]
+        public async Task<JsonResult> Callbackapi(string hash)
+        {
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/CallBackApi", _httpContextAccessor.HttpContext.Session.GetString("Token"), new callbackapinbody { txhash = hash });
+            var res = JsonConvert.DeserializeObject<BaseResult<string>>(response);
+            return Json(res);
+        }
     }
 
     public class gettransactionbody
     {
         public int Page { get; set; }
+    }
+
+    public class callbackapinbody
+    {
+        public string txhash { get; set; }
     }
 }

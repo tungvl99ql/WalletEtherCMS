@@ -31,7 +31,8 @@
                                 <td style="color:white">@Exten.Tinyhash(item.From)</td>
                                 <td style="color:white">@Exten.Tinyhash(item.To)</td>
                                 <td style="color:white">@item.Amount</td>
-                                @if(item.token == "USDT_TESTNET" || item.token == "USDT"){
+                                @if (item.token == "USDT_TESTNET" || item.token == "USDT")
+                                {
                                     <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"></td>
                                 }
                                 else if (item.token == "USDC")
@@ -50,12 +51,23 @@
                                 @if (item.callbackstatus)
                                 {
                                     <td> <a class="btn btn-success">@item.callbackstatus</a></td>
-                                   
-                                }else{
+
+                                }
+                                else
+                                {
                                     <td><a class="btn btn-danger">@item.callbackstatus</a></td>
                                 }
 
                                 <td style="color:white">@item.Createddate  ></td>
+                                <td>
+                                    @if (item.callbackstatus == false)
+                                    {
+                                        <a style="display: -webkit-inline-box;" class="btn btn-light" data-toggle="tooltip" data-placement="top" title="call api" onclick="callapi('@item.hash')">
+                                            <div id="loading-@item.hash" style="width:15px;height:15px; display:none" class="spinner-border" role="status">
+                                            </div> CallApi
+                                        </a>
+                                    }
+                                </td>
                             </tr>
                         }
                     }
@@ -66,10 +78,39 @@
 </div>
 <script>
 
-    function openTx(hash){
+    function openTx(hash) {
         var url = "https://testnet.bscscan.com/tx/" + hash;
-        console.log("url=>",url);
+        console.log("url=>", url);
         window.open(url, '_blank').focus();
+    }
+
+    function callapi(hash) {
+
+        document.getElementById("loading-" + hash).style.display = "block";
+
+
+        let param = {
+            'hash': hash,
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("Callbackapi")",
+            data: param,
+            async: true,
+            success: function (data) {
+                document.getElementById("loading-" + hash).style.display = "none";
+                console.log("data", data)
+                if (data.success) {
+                    console.log(data.message);
+                    alert(data.message);
+
+                } else {
+                    console.log(data.message);
+                    alert(data.message);
+                }
+            }
+        });
     }
 
 </script>
