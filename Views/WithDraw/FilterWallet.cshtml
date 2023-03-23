@@ -15,6 +15,7 @@
                     <tr class="">
                         <th style="color:white">Wallet</th>
                         <th style="color:white">Wallet balance (@ViewData["tokenname"])</th>
+                        <th style="color:white">BNB</th>
                         <th style="color:white">Option</th>
                     </tr>
                 </thead>
@@ -25,6 +26,7 @@
                             <tr>
                                 <td style="color:white"> @item.address </td>
                                 <td id="@item.address" style="color:white">@item.value $</td>
+                                <td id="bnb-@item.address" style="color:white">  </td>
                                 <td>
                                     <a style="display: -webkit-inline-box;" class="btn btn-light" data-toggle="tooltip" data-placement="top" title="Withdraw to project wallet" onclick="Withdrawone(@item.value,'@item.address')">
                                         <div id="loading-@item.address" style="width:15px;height:15px; display:none" class="spinner-border" role="status">
@@ -44,8 +46,8 @@
 
 <!-- Button trigger modal -->
 @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-</button>*@
+        Launch demo modal
+    </button>*@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -72,9 +74,9 @@
 
 <div style="margin-top:20px">
     @* <a class="mdi mdi-arrow-left"></a>
-    <h3>3</h3>
+        <h3>3</h3>
 
-    <a class="mdi mdi-arrow-right"></a>*@
+        <a class="mdi mdi-arrow-right"></a>*@
 
     <div class="template-demo">
         @if (int.Parse(ViewData["page"].ToString()) > 1)
@@ -168,5 +170,36 @@
             }
         });
     }
+
+    document.addEventListener("DOMContentLoaded", async function () {
+          var list =  @Html.Raw(Json.Serialize(ls));
+        var web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545/");
+        //var a = await web3.eth.getBalance("0x2796e737c79156e26B75C63C7aF1691294f0Bf45");
+        //console.log("a=>",a);
+        for (var i = 0; i < list.length; i++) {
+            var classId = "bnb-" + list[i].address;
+            console.log(classId)
+            var a = await web3.eth.getBalance(list[i].address);
+            console.log("a=>", a);
+            document.getElementById(classId).innerHTML = web3.utils.fromWei(a, 'ether') + " BNB";
+        }
+
+    });
+
+    async function getBalance() {
+        var list =  @Html.Raw(Json.Serialize(ls));
+        for (var i = 0; i < list.length; i++) {
+            var classId = "bnb-" + list[i].address;
+            console.log(classId)
+             //web3.eth.getBalance(list[i].address, function (error, result) {
+             //   if (!error) {
+             //       document.getElementById(classId).innerHTML = web3.utils.fromWei(result, 'ether') + "BNB";
+             //   }
+             //});
+            var a = await web3.eth.getBalance(list[i].address);
+            console.log("a=>",a);
+        }
+    }
 </script>
+<script src="/js/web3.min.js"></script>
 
