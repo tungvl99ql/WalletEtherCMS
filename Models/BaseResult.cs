@@ -101,11 +101,11 @@ namespace CMSWallet.Models
     }
     public class Value
     {
-        public double USDT { get; set; }
-        public double USDC { get; set; }
-        public double BUSD { get; set; }
-        public double DAI { get; set; }
-        public double USDT_TESTNET { get; set; }
+        public double? USDT { get; set; }
+        public double? USDC { get; set; }
+        public double? BUSD { get; set; }
+        public double? DAI { get; set; }
+        public double? USDT_TESTNET { get; set; }
     }
 
 
@@ -133,6 +133,7 @@ namespace CMSWallet.Models
         public string hash { get; set; }
         public bool callbackstatus { get; set; }
         public string? callbackresponse { get; set; }
+        
     }
 
     public class DataApicallback
@@ -140,5 +141,6 @@ namespace CMSWallet.Models
         public string address { get; set; }
         public string urlcallback { get; set; }
         public string bodycontent { get; set; }
+        public string? telegram { get; set; }
     }
 }

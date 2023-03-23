@@ -135,9 +135,9 @@ namespace CMSWallet.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> SetCallback(string address, string url,string body)
+        public async Task<JsonResult> SetCallback(string address, string url,string body,string idtelegram)
         {
-            var response = await CallAPI.Post(appsetting.API_URL + "wallet/SetApiCallback", _httpContextAccessor.HttpContext.Session.GetString("Token"), new DataApicallback { address = address.Trim(),urlcallback = url,bodycontent = body });
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/SetApiCallback", _httpContextAccessor.HttpContext.Session.GetString("Token"), new DataApicallback { address = address.Trim(),urlcallback = url,bodycontent = body,telegram = idtelegram });
             Debug.WriteLine(response);
             var res = JsonConvert.DeserializeObject<BaseResult<DataCreatewallet>>(response);
             return Json(res);

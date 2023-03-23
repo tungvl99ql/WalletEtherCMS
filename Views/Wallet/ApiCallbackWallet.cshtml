@@ -22,6 +22,11 @@
                 <textarea class="form-control" id="body" rows="4"></textarea>
             </div>
 
+            <div class="form-group">
+                <label for="exampleInputEmail1">Id chat Telegram</label>
+                <input type="text" class="form-control" id="idtelegram" placeholder="" value="@data.telegram">
+            </div>
+
             <button onclick="Save()" class="btn btn-primary mr-2">Save</button>
             <button class="btn btn-dark">Cancel</button>
         </div>
@@ -33,17 +38,19 @@
         const textarea = document.getElementById('body');
         textarea.value = `@Html.Raw(data.bodycontent)` ;
     });
-
+    
 
     function Save() {
         let address = document.getElementById("address").value;
         let url = document.getElementById("url").value;
         let body = document.getElementById("body").value;
+        let idtelegram = document.getElementById("idtelegram").value;
 
         let param = {
             'address': address,
             'url': url,
             'body': body,
+            'idtelegram': idtelegram
         };
 
         $.ajax({

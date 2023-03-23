@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PROJECT\\NodeJs_project\\WalletEtherCMS\\CMSWallet.csproj": {}
+    "E:\\GITHUB\\WalletEtherCMS\\CMSWallet.csproj": {}
   },
   "projects": {
-    "D:\\PROJECT\\NodeJs_project\\WalletEtherCMS\\CMSWallet.csproj": {
+    "E:\\GITHUB\\WalletEtherCMS\\CMSWallet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PROJECT\\NodeJs_project\\WalletEtherCMS\\CMSWallet.csproj",
+        "projectUniqueName": "E:\\GITHUB\\WalletEtherCMS\\CMSWallet.csproj",
         "projectName": "CMSWallet",
-        "projectPath": "D:\\PROJECT\\NodeJs_project\\WalletEtherCMS\\CMSWallet.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\PROJECT\\NodeJs_project\\WalletEtherCMS\\obj\\",
+        "projectPath": "E:\\GITHUB\\WalletEtherCMS\\CMSWallet.csproj",
+        "packagesPath": "C:\\Users\\JackieLoveeeee\\.nuget\\packages\\",
+        "outputPath": "E:\\GITHUB\\WalletEtherCMS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JackieLoveeeee\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
