@@ -57,6 +57,15 @@ namespace CMSWallet.Models
         public double balance { get; set; }
         public string? message { get; set; }
     }
+
+    public class Profile
+    {
+        public string _id { get; set; }
+        public string username { get; set; }
+        public int maxwallet { get; set; }
+        public int maxwalletchild { get; set; }
+    }
+
     public class Datalistwallet
     {
         public List<listwallet> listwallet { get; set; }

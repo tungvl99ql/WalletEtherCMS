@@ -69,6 +69,41 @@
     </div>
 </div>
 
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Body example</h4>
+
+            <pre>
+{
+    "hash":[hash],
+    "value": [value],
+    "address": [address],
+    "secretkey": "1234abcd"
+}
+
+Trong đó: [hash] là mã hash của giao dịch
+          [value] là số lượng token nạp
+          [address] là địa chỉ ví nhận được token -tương ứng 1 user
+          secretkey có thể là key để xác thực khi call sang api game của bạn
+            </pre>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Id telegram</h4>
+
+            <pre>
+Tìm kiếm trong telegram "@@Tungdepzai" và chat /id để lấy id
+.Bạn sẽ nhận được thông báo giao dịch qua chat telegram
+            </pre>
+        </div>
+    </div>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const textarea = document.getElementById('body');

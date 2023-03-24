@@ -1,0 +1,36 @@
+﻿@{
+    Profile data = Model;
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Profile</h4>
+            @*<p class="card-description"> Horizontal form layout </p>*@
+        <form class="forms-sample">
+            <div class="form-group row">
+                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">@data.username</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Max project</label>
+                <div class="col-sm-9">
+                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">@data.maxwallet</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Max wallet child</label>
+                <div class="col-sm-9">
+                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">@data.maxwalletchild</label>
+                </div>
+            </div>
+
+            <a href="@Url.Action("Upgrade","Account")" class="btn btn-warning me-2">Upgrade Pro</a>
+            @*<button class="btn btn-dark">Cancel</button>*@
+        </form>
+        </div>
+    </div>
+</div>
+

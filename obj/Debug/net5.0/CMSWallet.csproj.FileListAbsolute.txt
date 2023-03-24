@@ -1107,3 +1107,5 @@ D:\PROJECT\NodeJs_project\WalletEtherCMS\obj\Debug\net5.0\CMSWallet.pdb
 D:\PROJECT\NodeJs_project\WalletEtherCMS\obj\Debug\net5.0\CMSWallet.genruntimeconfig.cache
 D:\PROJECT\NodeJs_project\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Auth\Register.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Auth\Register.cshtml.g.cs
+D:\PROJECT\NodeJs_project\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Account\Infor.cshtml.g.cs
+D:\PROJECT\NodeJs_project\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Account\Upgrade.cshtml.g.cs

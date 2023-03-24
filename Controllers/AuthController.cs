@@ -38,6 +38,7 @@ namespace CMSWallet.Controllers
             {
                 Debug.WriteLine(res.Data.accesstoken);
                 HttpContext.Session.SetString("Token", res.Data.accesstoken);
+                HttpContext.Session.SetString("UserName", username);
             }
             return Json(response);
         }
