@@ -92,9 +92,9 @@ namespace CMSWallet.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> CreateChild(string phrase, int amount)
+        public async Task<JsonResult> CreateChild(string phrase, string address)
         {
-            var response = await CallAPI.Post(appsetting.API_URL + "wallet/CreateWalletchild", _httpContextAccessor.HttpContext.Session.GetString("Token"), new createchildwalletbody { phrase = phrase,amount = amount});
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/CreateWalletchild", _httpContextAccessor.HttpContext.Session.GetString("Token"), new createchildwalletbody { phrase = phrase,address = address });
             Debug.WriteLine(response);
 
             var res = JsonConvert.DeserializeObject<ResultList<string>>(response);
@@ -151,7 +151,7 @@ namespace CMSWallet.Controllers
     public class createchildwalletbody
     {
         public string phrase { get; set; } 
-        public int amount { get; set; }
+        public string address { get; set; }
     }
     public class getprivatekeybody
     {

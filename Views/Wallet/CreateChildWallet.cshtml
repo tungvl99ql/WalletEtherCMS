@@ -10,12 +10,12 @@
                 <input type="text" class="form-control" id="exampleInputUsername1" style="color:black" disabled value="@ViewData["address"]">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Phrase</label>
+                <label for="exampleInputEmail1">Phrase md5</label>
                 <input type="text" class="form-control" id="phrase" placeholder=". . .">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Amount</label>
-                <input type="number" class="form-control" id="amount" placeholder="0">
+                <input type="number" class="form-control" id="amount" placeholder="1" disabled>
             </div>
 
             <button onclick="Create()" class="btn btn-primary mr-2">Create </button>
@@ -24,15 +24,36 @@
     </div>
 </div>
 
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">API</h4>
+
+            <pre>
+{
+    "phrase": "7e4a6d994e225083538f573d57673269",
+    "address": "0xda1d38799279F3EA29c1f822AC16882Bcd86C55A"
+}
+
+Trong đó: phrase là 12 ký tự bảo mật của ví (project) bằng md5
+          address là địa chỉ ví (project)
+            </pre>
+        </div>
+    </div>
+</div>
+
+
+
 <script>
     function Create() {
-        var Url =  @Html.Raw(Json.Serialize(ViewData["address"])); 
+        var Url =  @Html.Raw(Json.Serialize(ViewData["address"]));
         let phrase = document.getElementById("phrase").value;
         let amount = document.getElementById("amount").value;
 
         let param = {
             'phrase': phrase,
-            'amount': amount
+            'address': Url
         };
         console.log(Url);
 
