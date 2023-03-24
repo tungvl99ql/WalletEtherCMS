@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -81,6 +82,14 @@ namespace CMSWallet.Controllers
             var res = JsonConvert.DeserializeObject<BaseResult<UpdateBalanceOne>>(response);
             return Json(res);
         }
+
+        [HttpPost]
+        public async Task<JsonResult> SendEthertoList(List<string> address, double value, string addressparent)
+        {
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/SendEtherList", _httpContextAccessor.HttpContext.Session.GetString("Token"), new sendethertolistbody { address = address, addressparent = addressparent,value = value });
+            var res = JsonConvert.DeserializeObject<ResultList<Sendetherresult>>(response);
+            return Json(res);
+        }
     }
     public class filterwalletbody
     {
@@ -107,6 +116,13 @@ namespace CMSWallet.Controllers
         public string address { get; set; }
         public string token { get; set; }
     }
+    public class sendethertolistbody
+    {
+        public List<string> address { get; set; }
+        public string addressparent { get; set; }
+        public double value { get; set; }
+    }
+
 }
 
 

@@ -43,6 +43,14 @@ namespace CMSWallet.Models
         public string? txhash { get; set; }
         public string message { get; set; }
     }
+
+    public class Sendetherresult
+    {
+        public string address { get; set; }
+        public bool status { get; set; }
+        public string message { get; set; }
+    }
+
     public class UpdateBalanceOne
     {
         public string address { get; set; }

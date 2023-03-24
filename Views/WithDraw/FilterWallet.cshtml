@@ -5,7 +5,21 @@
 
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Balance </h4>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+            <h4 class="card-title">Balance wallet project: <a style="color:hotpink" id="balance">0 BNB</a></h4>
+            <div style="display:flex">
+                @*<h4> send bnb to list wallet </h4>*@
+                <input type="number" class="form-control" id="valuesend" placeholder="Send bnb to list wallet">
+                @*<a class="btn btn-success" data-toggle="tooltip" data-placement="top" title="send bnb to list wallet" onclick="sendEther()">Send </a>
+                <div id="loading-sendether" style="width:15px;height:15px; display:none" class="spinner-border" role="status">*@
+                <a style="display: -webkit-inline-box;" class="btn btn-light" data-toggle="tooltip" data-placement="top" title="Withdraw to project wallet" onclick="sendEther()">
+                    <div id="loading-sendether" style="width:15px;height:15px; display:none" class="spinner-border" role="status">
+                    </div> Send
+                    </a>
+            </div>
+
+        </div>
+
         <p class="card-description">
             @*Add class <code>.table</code>*@
         </p>
@@ -72,11 +86,34 @@
     </div>
 </div>
 
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Noti</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 id="content2">
+                    AHIHI
+                </h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button onclick="viewTX()" style="display: none;" id="viewtx" type="button" class="btn btn-primary">View tx</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div style="margin-top:20px">
     @* <a class="mdi mdi-arrow-left"></a>
-        <h3>3</h3>
+    <h3>3</h3>
 
-        <a class="mdi mdi-arrow-right"></a>*@
+    <a class="mdi mdi-arrow-right"></a>*@
 
     <div class="template-demo">
         @if (int.Parse(ViewData["page"].ToString()) > 1)
@@ -99,7 +136,6 @@
 
         var myModal = document.getElementById("exampleModal");
         var modal = new bootstrap.Modal(myModal);
-
         var content = document.getElementById("content");
 
 
@@ -172,7 +208,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", async function () {
-          var list =  @Html.Raw(Json.Serialize(ls));
+        var list = @Html.Raw(Json.Serialize(ls));
         var web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545/");
         //var a = await web3.eth.getBalance("0x2796e737c79156e26B75C63C7aF1691294f0Bf45");
         //console.log("a=>",a);
@@ -183,21 +219,70 @@
             console.log("a=>", a);
             document.getElementById(classId).innerHTML = web3.utils.fromWei(a, 'ether') + " BNB";
         }
-
+        var projectBalance = await web3.eth.getBalance('@ViewData["address"]');
+        console.log("projectBalance=>", web3.utils.fromWei(projectBalance, 'ether') + " BNB");
+        document.getElementById("balance").innerHTML = web3.utils.fromWei(projectBalance, 'ether') + " BNB"
     });
 
     async function getBalance() {
-        var list =  @Html.Raw(Json.Serialize(ls));
+        var list = @Html.Raw(Json.Serialize(ls));
         for (var i = 0; i < list.length; i++) {
             var classId = "bnb-" + list[i].address;
             console.log(classId)
-             //web3.eth.getBalance(list[i].address, function (error, result) {
-             //   if (!error) {
-             //       document.getElementById(classId).innerHTML = web3.utils.fromWei(result, 'ether') + "BNB";
-             //   }
-             //});
+            //web3.eth.getBalance(list[i].address, function (error, result) {
+            //   if (!error) {
+            //       document.getElementById(classId).innerHTML = web3.utils.fromWei(result, 'ether') + "BNB";
+            //   }
+            //});
             var a = await web3.eth.getBalance(list[i].address);
-            console.log("a=>",a);
+            console.log("a=>", a);
+        }
+    }
+
+
+    function sendEther() {
+
+        document.getElementById("loading-sendether").style.display = "block";
+        var myModal = document.getElementById("exampleModal2");
+        var modal = new bootstrap.Modal(myModal);
+        var content = document.getElementById("content2");
+
+        var parentaddress = `@Html.Raw(ViewData["address"])`;
+        var value = document.getElementById("valuesend").value;
+        var listaddress =  @Html.Raw(Json.Serialize(ls.Select(x=> x.address)));
+        let param = {
+            'addressparent': parentaddress,
+            'value': value,
+            'address': listaddress
+        };
+
+        console.log("param=>", param);
+
+        if (value > 0 || value != null || value != "" || value.length > 0) {
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("SendEthertoList")",
+                data: param,
+                async: true,
+                success: function (data) {
+                    console.log("data", data)
+                    document.getElementById("loading-sendether").style.display = "none";
+                    if (data.success) {
+                        var text = "";
+                        for (var i = 0; i < data.data.length; i++) {
+                            text += `\n ${data.data[i].address} : ${data.data[i].status}`;
+                        }
+                        console.log(text);
+                        content.innerHTML = text;
+                        modal.show();
+                    } else {
+                        alert(data.data.message);
+                    }
+                }
+            });
+        }
+        else{
+            alert("không thể chuyển value 0");
         }
     }
 </script>
