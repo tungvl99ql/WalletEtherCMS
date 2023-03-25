@@ -1,0 +1,57 @@
+﻿
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Delete Project</h4>
+            <div class="form-group">
+                <label for="exampleInputUsername1">Address wallet project</label>
+                <input type="text" class="form-control" id="exampleInputUsername1" style="color:black" disabled value="@ViewData["address"]">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Password</label>
+                <input type="password" class="form-control" id="pass" placeholder="input password account">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Enter project name</label>
+                <input type="text" class="form-control" id="name" placeholder="project name" >
+            </div>
+
+            <button onclick="Create()" class="btn btn-danger mr-2">Delete </button>
+            @*<button class="btn btn-dark">Cancel</button>*@
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    function Create() {
+        var address =  @Html.Raw(Json.Serialize(ViewData["address"]));
+        let pass = document.getElementById("pass").value;
+        let name = document.getElementById("name").value;
+
+        let param = {
+            'address': address,
+            'pass': pass,
+            'name': name,
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("PostDeleteProject")",
+            data: param,
+            async: true,
+            success: function (data) {
+                console.log("data", data)
+                if (data.success) {
+                    var url = "/Wallet";
+                    location.href = url;
+                } else {
+                    alert(data.message)
+                }
+            }
+        });
+    }
+</script>

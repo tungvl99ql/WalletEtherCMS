@@ -59,6 +59,12 @@ namespace CMSWallet.Controllers
             return View();
         }
 
+        public IActionResult DeleteWallet(string address)
+        {
+            ViewData["address"] = address;
+            return View();
+        }
+
         public async Task<IActionResult> GetPrivateKey(string address,string path)
         {
             //var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
@@ -87,6 +93,14 @@ namespace CMSWallet.Controllers
         public async Task<JsonResult> Create(string projectname)
         {
             var response = await CallAPI.Post(appsetting.API_URL + "wallet/CreateWallet", _httpContextAccessor.HttpContext.Session.GetString("Token"), new newwallet { projectname = projectname });
+            var res = JsonConvert.DeserializeObject<BaseResult<DataCreatewallet>>(response);
+            return Json(res);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> PostDeleteProject(string address,string pass,string name)
+        {
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/DeleteWallet", _httpContextAccessor.HttpContext.Session.GetString("Token"), new deleteProject { address = address,password = pass,projectname = name });
             var res = JsonConvert.DeserializeObject<BaseResult<DataCreatewallet>>(response);
             return Json(res);
         }
@@ -171,6 +185,13 @@ namespace CMSWallet.Controllers
     }
     public class newwallet
     {
+        public string projectname { get; set; }
+    }
+
+    public class deleteProject
+    {
+        public string address { get; set; }
+        public string password { get; set; }
         public string projectname { get; set; }
     }
 }
