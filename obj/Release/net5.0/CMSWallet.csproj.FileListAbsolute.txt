@@ -376,3 +376,6 @@ E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\WithDraw\FilterWalletVie
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\WithDraw\HistoryWalletTX.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\WithDraw\Index.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\WithDraw\ListWalletTX.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Account\Infor.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Account\Upgrade.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Wallet\DeleteWallet.cshtml.g.cs
