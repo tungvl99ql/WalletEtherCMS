@@ -899,6 +899,7 @@ E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\ve
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\css\site.css
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\favicon.ico
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\js\site.js
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\js\web3.min.js
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css

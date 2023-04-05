@@ -160,4 +160,20 @@ namespace CMSWallet.Models
         public string bodycontent { get; set; }
         public string? telegram { get; set; }
     }
+
+    public class DataStat
+    {
+        public double totalAmountInDay { get; set; }
+        public double usdt { get; set; }
+        public double usdc { get; set; }
+        public double busd { get; set; }
+        public double usdt_testnet { get; set; }
+        public double totalAmountInMonth { get; set; }
+        public double usdt_month { get; set; }
+        public double usdc_month { get; set; }
+        public double busd_month { get; set; }
+        public double usdt_testnet_month { get; set; }
+        public double totalWithdawInDay { get; set; }
+        public double totalWithdawInMonth { get; set; }
+    }
 }
