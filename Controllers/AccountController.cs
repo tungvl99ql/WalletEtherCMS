@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,6 +29,14 @@ namespace CMSWallet.Controllers
             var response = await CallAPI.Get(appsetting.API_URL + "users/Profile", token);
             var res = JsonConvert.DeserializeObject<BaseResult<Profile>>(response);
             return View(res.Data);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            HttpContext.Session.Remove("Token");
+            HttpContext.Session.Remove("UserName");
+            HttpContext.Session.Remove("EndToken");
+            return RedirectToAction("Index", "Auth");
         }
 
         public async Task<IActionResult> Upgrade()

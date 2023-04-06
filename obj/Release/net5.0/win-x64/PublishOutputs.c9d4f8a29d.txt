@@ -130,6 +130,7 @@ E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\im
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\logo-mini.svg
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\logo.png
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\logo.svg
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\logo1..png
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\samples\1280x768\1.jpg
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\samples\1280x768\10.jpg
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\samples\1280x768\11.jpg

@@ -1,5 +1,4 @@
 E:\GITHUB\WalletEtherCMS\bin\Release\net5.0\appsettings.Development.json
-E:\GITHUB\WalletEtherCMS\bin\Release\net5.0\appsettings.json
 E:\GITHUB\WalletEtherCMS\bin\Release\net5.0\CMSWallet.exe
 E:\GITHUB\WalletEtherCMS\bin\Release\net5.0\CMSWallet.deps.json
 E:\GITHUB\WalletEtherCMS\bin\Release\net5.0\CMSWallet.runtimeconfig.json
@@ -379,3 +378,4 @@ E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\WithDraw\ListWalletTX.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Account\Infor.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Account\Upgrade.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Wallet\DeleteWallet.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Transaction\index2.cshtml.g.cs

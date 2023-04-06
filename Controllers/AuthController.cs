@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -39,6 +40,7 @@ namespace CMSWallet.Controllers
                 Debug.WriteLine(res.Data.accesstoken);
                 HttpContext.Session.SetString("Token", res.Data.accesstoken);
                 HttpContext.Session.SetString("UserName", username);
+                HttpContext.Session.SetString("EndToken", DateTime.Now.AddHours(1).ToString());
             }
             return Json(response);
         }

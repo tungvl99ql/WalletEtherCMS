@@ -139,7 +139,12 @@ namespace CMSWallet.Models
         public string address { get; set; }
         public string privatekey { get; set; }
     }
-
+    public class Datatransaction1
+    {
+        public List<DataTransaction> txs { get; set; }
+        public int totaltx { get; set; }
+        public int maxpage { get; set; }
+    }
     public class DataTransaction
     {
         public string From { get; set; }
@@ -152,10 +157,18 @@ namespace CMSWallet.Models
         public string? callbackresponse { get; set; }
         
     }
+    public class ListAddressTransaction
+    {
+        public string address { get; set; }
+        public string projectname { get; set; }
+        public int countTx { get; set; }
+    }
 
     public class DataApicallback
     {
+        
         public string address { get; set; }
+        public string projectname { get; set; }
         public string urlcallback { get; set; }
         public string bodycontent { get; set; }
         public string? telegram { get; set; }

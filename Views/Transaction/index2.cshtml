@@ -1,0 +1,40 @@
+﻿@using CMSWallet;
+@{
+    List<ListAddressTransaction> ls = Model;
+}
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">History Transactions</h4>
+        <p class="card-description">
+            @*Add class <code>.table</code>*@
+        </p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="">
+                        <th style="color:white">Project name</th>
+                        <th style="color:white">Address</th>
+                        <th style="color:white">Transaction</th>
+                        <th style="color:white">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in ls)
+                        {
+                            <tr>
+                                <td><a style="color:white">@item.projectname </a> </td>
+                                <td style="color:white">@item.address</td>
+                                <td style="color:white">@item.countTx</td>
+                               
+                                <td>
+                                    <a class="btn btn-success mdi mdi-send" data-toggle="tooltip" data-placement="top" title="transaction" href="@Url.Action("LsTx","Transaction",new {address=item.address,page = 1 })"></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

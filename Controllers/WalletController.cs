@@ -38,7 +38,7 @@ namespace CMSWallet.Controllers
 
             var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
             var response = await CallAPI.Post(appsetting.API_URL + "wallet/GetApiCallback", token, new geturlcallbackbody { address = address});
-            Debug.WriteLine(response);
+            //Debug.WriteLine(response);
             var res = JsonConvert.DeserializeObject<BaseResult<DataApicallback>>(response);
             return View(res.Data);
         }
@@ -149,9 +149,9 @@ namespace CMSWallet.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> SetCallback(string address, string url,string body,string idtelegram)
+        public async Task<JsonResult> SetCallback(string projectname, string address, string url,string body,string idtelegram)
         {
-            var response = await CallAPI.Post(appsetting.API_URL + "wallet/SetApiCallback", _httpContextAccessor.HttpContext.Session.GetString("Token"), new DataApicallback { address = address.Trim(),urlcallback = url,bodycontent = body,telegram = idtelegram });
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/SetApiCallback", _httpContextAccessor.HttpContext.Session.GetString("Token"), new DataApicallback { address = address.Trim(),urlcallback = url,bodycontent = body,telegram = idtelegram,projectname = projectname });
             Debug.WriteLine(response);
             var res = JsonConvert.DeserializeObject<BaseResult<DataCreatewallet>>(response);
             return Json(res);

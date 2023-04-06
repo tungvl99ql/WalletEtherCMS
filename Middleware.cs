@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Mid
@@ -21,15 +23,27 @@ namespace Mid
             else //  controller khác
             {
                 var Token = httpContext.Session.GetString("Token");
-                if (Token == null || Token == "")
+                var Endtoken =  httpContext.Session.GetString("EndToken");
+                if ( (Endtoken != null && DateTime.Now >= DateTime.Parse(Endtoken)) || Token == null || Token == "")
                 {
                     await Task.Run(() =>
-                           {
-                               httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                               httpContext.Response.Redirect("Auth");
-                           });
+                    {
+                        httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                        httpContext.Response.Redirect("Auth");
+                    });
                     return;
                 }
+
+               
+                //if (Token == null || Token == "" )
+                //{
+                //    await Task.Run(() =>
+                //           {
+                //               httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                //               httpContext.Response.Redirect("Auth");
+                //           });
+                //    return;
+                //}
                 await _next(httpContext);
             }
         }

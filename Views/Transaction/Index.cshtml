@@ -76,6 +76,27 @@
         </div>
     </div>
 </div>
+
+<div style="margin-top:20px">
+    @* <a class="mdi mdi-arrow-left"></a>
+    <h3>3</h3>
+
+    <a class="mdi mdi-arrow-right"></a>*@
+
+    <div class="template-demo">
+        @if (int.Parse(ViewData["page"].ToString()) > 1)
+        {
+            <a href="@Url.Action("LsTx","Transaction",new {address= ViewData["address"] ,page = int.Parse(ViewData["page"].ToString()) -1 })" class="mdi mdi-arrow-left"></a>
+        }
+        else
+        {
+            <a class="mdi mdi-arrow-left"></a>
+        }
+        <a class="">@ViewData["page"]</a>
+        <a href="@Url.Action("LsTx","Transaction",new {address= ViewData["address"] ,page = int.Parse(ViewData["page"].ToString())+1 })" class="mdi mdi-arrow-right"></a>
+    </div>
+</div>
+
 <script>
 
     function openTx(hash) {
@@ -114,4 +135,19 @@
     }
 
 </script>
+
+<script>
+    function NextorPrePage(v) {
+        var address = @Html.Raw(Json.Serialize(ViewData["address"]));
+        var page = @ViewData["page"];
+        if (v == -1) {
+            console.log("pre page : ", address, page);
+
+        } else {
+            console.log("next page: ", address, page);
+        }
+    }
+</script>
+
+
 
