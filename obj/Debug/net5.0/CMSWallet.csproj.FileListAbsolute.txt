@@ -367,7 +367,6 @@ E:\GITHUB\WalletEtherCMS\bin\Debug\net5.0\Microsoft.CodeAnalysis.Razor.dll
 E:\GITHUB\WalletEtherCMS\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
 E:\GITHUB\WalletEtherCMS\bin\Debug\net5.0\Newtonsoft.Json.dll
 E:\GITHUB\WalletEtherCMS\bin\Debug\net5.0\appsettings.Development.json
-E:\GITHUB\WalletEtherCMS\bin\Debug\net5.0\appsettings.json
 E:\GITHUB\WalletEtherCMS\bin\Debug\net5.0\CMSWallet.exe
 E:\GITHUB\WalletEtherCMS\bin\Debug\net5.0\CMSWallet.deps.json
 E:\GITHUB\WalletEtherCMS\bin\Debug\net5.0\CMSWallet.runtimeconfig.json
