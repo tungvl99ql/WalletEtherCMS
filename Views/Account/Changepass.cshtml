@@ -1,0 +1,47 @@
+﻿<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Change Password</h4>
+            @*<p class="card-description"> Change Password </p>*@
+            <form class="forms-sample">
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Old password</label>
+                    <input type="password" class="form-control" id="oldpass" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">New password</label>
+                    <input type="password" class="form-control" id="newpass" placeholder="">
+                </div>
+                <a onclick="change()" class="btn btn-primary mr-2">Submit</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    
+    function change() {
+
+        let oldpass = document.getElementById("oldpass").value;
+        let newpass = document.getElementById("newpass").value;
+
+        let param = {
+            'oldpass': oldpass,
+            'newpass': newpass
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("changepassPost")",
+            data: param,
+            async: true,
+            success: function (data) {
+                console.log("data=>>", data);
+                alert(data.message);
+            }
+        });
+    }
+
+</script>
+

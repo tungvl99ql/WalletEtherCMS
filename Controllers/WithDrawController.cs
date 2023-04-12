@@ -23,7 +23,7 @@ namespace CMSWallet.Controllers
         public async Task<IActionResult> Index() //  danh sach wallet 
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
-            var response = await CallAPI.Get(appsetting.API_URL + "wallet/ListWallet", _httpContextAccessor.HttpContext.Session.GetString("Token"));
+            var response = await CallAPI.Get(appsetting.API_URL + "wallet/ListWalletWithDraw", _httpContextAccessor.HttpContext.Session.GetString("Token"));
             //Debug.WriteLine(response);
             var res = JsonConvert.DeserializeObject<BaseResult<Datalistwallet>>(response);
             //Debug.WriteLine(res);

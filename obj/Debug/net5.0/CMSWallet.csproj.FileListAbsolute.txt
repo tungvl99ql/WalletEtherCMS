@@ -1113,3 +1113,8 @@ E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Account\Infor.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Account\Upgrade.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Wallet\DeleteWallet.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Transaction\index2.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Account\AdvanceSetting.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Account\Changepass.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Account\Createmanager.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Account\Listmanager.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Transaction\Miss.cshtml.g.cs

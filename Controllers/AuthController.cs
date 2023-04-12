@@ -40,6 +40,7 @@ namespace CMSWallet.Controllers
                 Debug.WriteLine(res.Data.accesstoken);
                 HttpContext.Session.SetString("Token", res.Data.accesstoken);
                 HttpContext.Session.SetString("UserName", username);
+                HttpContext.Session.SetString("Role", res.Data.role.ToString());
                 HttpContext.Session.SetString("EndToken", DateTime.Now.AddHours(1).ToString());
             }
             return Json(response);

@@ -16,7 +16,11 @@ namespace CMSWallet.Models
         public bool Success { get; set; }
         public List<T> Data { get; set; }
     }
-
+    public class MissTx
+    {
+        public string hash { get; set; }
+        public string value { get; set; }
+    }
     public class DataReg
     {
         public string username { get; set; }
@@ -31,6 +35,7 @@ namespace CMSWallet.Models
     {
         public string accesstoken { get; set; }
         public int expiresIn { get; set; }
+        public int role { get; set; }
     }
     public class DataCreatewallet
     {
@@ -57,13 +62,17 @@ namespace CMSWallet.Models
         public double balance { get; set; }
         public string? message { get; set; }
     }
-
+    public class Hideinforwallet
+    {
+        public bool hideinforwallet { get; set; }
+    }
     public class Profile
     {
         public string _id { get; set; }
         public string username { get; set; }
         public int maxwallet { get; set; }
         public int maxwalletchild { get; set; }
+        public bool hideinforwallet { get; set; }
     }
 
     public class Datalistwallet

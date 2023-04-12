@@ -27,6 +27,11 @@ namespace CMSWallet.Controllers
             return View("index2",res.Data);
         }
 
+        public async Task<IActionResult> Miss()
+        {
+            return View();
+        }
+
 
         public async Task<IActionResult> LsTx(string address, int page = 1)
         {
@@ -39,6 +44,14 @@ namespace CMSWallet.Controllers
             ViewData["page"] = page;
 
             return View("Index", res.Data.txs);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> Check(string address,string tokenname)
+        {
+            var response = await CallAPI.Post(appsetting.API_URL + "transaction/CheckTxMiss", _httpContextAccessor.HttpContext.Session.GetString("Token"), new checkmissbody { address= address, tokenname  = tokenname });
+            var res = JsonConvert.DeserializeObject<ResultList<MissTx>>(response);
+            return Json(res);
         }
 
         [HttpPost]
@@ -63,5 +76,10 @@ namespace CMSWallet.Controllers
     {
         public string address { get; set; }
         public int page { get; set; }
+    }
+    public class checkmissbody
+    {
+        public string address { get; set;}
+        public string tokenname { get; set; }
     }
 }

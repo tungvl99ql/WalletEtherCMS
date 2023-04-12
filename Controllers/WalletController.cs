@@ -21,6 +21,7 @@ namespace CMSWallet.Controllers
         }
         public async Task<IActionResult> Index() //  danh sach wallet 
         {
+            ViewData["role"] = _httpContextAccessor.HttpContext.Session.GetString("Role");
             var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
             var response = await CallAPI.Get(appsetting.API_URL + "wallet/ListWallet", token);
             //Debug.WriteLine(response);

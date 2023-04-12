@@ -1,0 +1,37 @@
+﻿@*@{
+    Profile data = Model;
+}*@
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Settings</h4>
+            @*<p class="card-description"> Horizontal form layout </p>*@
+            <div class="forms-sample">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <div class="form-check form-check-primary">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" checked=""> Hide seedphrase project <i class="input-helper"></i>
+                                </label>
+                            </div>
+                            <div class="form-check form-check-success">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" checked=""> Hide privatekey project <i class="input-helper"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <a href="@Url.Action("Upgrade","Account")" class="btn btn-success me-2">Change pass</a>
+                        </div>
+                    </div>
+                </div>
+
+              
+            </div>
+        </div>
+    </div>
+</div>
+

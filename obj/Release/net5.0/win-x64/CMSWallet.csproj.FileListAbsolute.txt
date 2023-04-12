@@ -731,3 +731,4 @@ E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Account\Infor.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Account\Upgrade.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Wallet\DeleteWallet.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Transaction\index2.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Account\AdvanceSetting.cshtml.g.cs

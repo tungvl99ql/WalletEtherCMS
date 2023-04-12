@@ -33,6 +33,7 @@ E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\fo
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\auth\lockscreen-bg.jpg
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\auth\login-bg.jpg
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\auth\Login_bg.jpg
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\auth\Login_bg1.jpg
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\auth\Login_bg2.jpg
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\auth\register-bg.jpg
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\assets\images\carousel\banner_1.jpg

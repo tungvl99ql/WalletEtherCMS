@@ -3,6 +3,7 @@
 
 @{
     string username = HttpContextAccessor.HttpContext.Session.GetString("UserName");
+    int role = int.Parse(HttpContextAccessor.HttpContext.Session.GetString("Role"));
 }
 
 
@@ -150,23 +151,27 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
+                
                 <li class="nav-item menu-items">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" data-toggle="collapse" href="#wl" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-icon">
                             <i class="mdi mdi-wallet"></i>
                         </span>
                         <span class="menu-title">Project</span>
                         <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse" id="ui-basic">
+                    <div class="collapse" id="wl">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Wallet")">List Project</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="@Url.Action("CreateWallet","Wallet")">Create Project</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="@Url.Action("ImportWallet","Wallet")">Import Wallet</a></li>
-                            @*<li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Wallet")">Buttons</a></li>*@
+                            @if (role == 1)
+                            {
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("CreateWallet","Wallet")">Create Project</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("ImportWallet","Wallet")">Import Wallet</a></li>
+                            }
                         </ul>
                     </div>
                 </li>
+               
                 <li class="nav-item menu-items">
                     <a class="nav-link" href="@Url.Action("Index","Transaction")">
                         <span class="menu-icon">
@@ -176,32 +181,48 @@
                     </a>
                 </li>
 
-                @*<li class="nav-item menu-items">
-                        <a class="nav-link" href="@Url.Action("Index","WithDraw")">
-                            <span class="menu-icon">
-                                <i class="mdi mdi-cash-usd"></i>
-                            </span>
-                            <span class="menu-title">WithDraw</span>
-                        </a>
-                    </li>*@
                 <li class="nav-item menu-items">
-                    <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                    <a class="nav-link" data-toggle="collapse" href="#withd" aria-expanded="false" aria-controls="aut">
                         <span class="menu-icon">
                             <i class="mdi mdi-cash-usd"></i>
                         </span>
                         <span class="menu-title">WithDraw</span>
                         <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse" id="auth">
+                    <div class="collapse" id="withd">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","WithDraw")"> Withdraw </a></li>
                             <li class="nav-item"> <a class="nav-link" href="@Url.Action("ListWalletTX","WithDraw")"> History </a></li>
-                            @*<li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>*@
                         </ul>
                     </div>
                 </li>
+
+                @if(role == 1){
+                    <li class="nav-item menu-items">
+                        <a class="nav-link" data-toggle="collapse" href="#mana" aria-expanded="false" aria-controls="">
+                            <span class="menu-icon">
+                                <i class="mdi mdi-account-multiple"></i>
+                            </span>
+                            <span class="menu-title">Manager</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="mana">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Listmanager","Account")"> Account Manager </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Createmanager","Account")"> Create Manager </a></li>
+                            </ul>
+                        </div>
+                    </li>
+                }
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="@Url.Action("Miss","Transaction")">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-call-missed"></i>
+                        </span>
+                        <span class="menu-title" >Miss transaction</span>
+                    </a>
+                </li>
+                    
                 @*<li class="nav-item menu-items">
                         <a class="nav-link" href="pages/forms/basic_elements.html">
                             <span class="menu-icon">
@@ -401,7 +422,20 @@
                                     </div>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <p class="p-3 mb-0 text-center">Advanced settings</p>
+
+                                <a class="dropdown-item preview-item" href="@Url.Action("AdvanceSetting", "Account")">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-settings text-green"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject mb-1">Settings</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+
+                                @*<p href="@Url.Action("AdvanceSetting", "Account")" class="p-3 mb-0 text-center">Advanced settings</p>*@
                             </div>
                         </li>
                     </ul>

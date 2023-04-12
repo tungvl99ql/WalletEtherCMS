@@ -1,5 +1,6 @@
 ﻿@using CMSWallet;
 @{
+    int role = int.Parse(ViewData["role"].ToString());
     List<listwallet> ls = Model;
 }
 
@@ -38,11 +39,14 @@
                                 <td style="color:white">@item.usdt_testnet</td>
                                 <td style="color:white">@item.child</td>
                                 <td>
-                                    <a class="btn btn-success mdi mdi-wallet" data-toggle="tooltip" data-placement="top" title="Create wallet user" href="@Url.Action("CreateChildWallet","Wallet",new {address=item.address })"></a>
-                                    <a class="btn btn-warning mdi mdi-wallet-membership" data-toggle="tooltip" data-placement="top" title="List wallet user" href="@Url.Action("ChildWallet","Wallet",new {address=item.address ,page = 1 })"></a>
-                                    <a class="btn btn-behance mdi mdi-wallet-travel" data-toggle="tooltip" data-placement="top" title="Infor wallet" href="@Url.Action("InforWallet","Wallet",new {address=item.address })"></a>
-                                    <a class="btn btn-light mdi mdi-web" data-toggle="tooltip" data-placement="top" title="Api callback transaction" href="@Url.Action("ApiCallbackWallet","Wallet",new {address=item.address })"></a>
-                                    <a class="btn btn-danger mdi mdi-delete" data-toggle="tooltip" data-placement="top" title="Delete project" href="@Url.Action("DeleteWallet","Wallet",new {address=item.address })"></a>
+                                    @if (role == 1)
+                                    {
+                                        <a class="btn btn-success mdi mdi-wallet" data-toggle="tooltip" data-placement="top" title="Create wallet user" href="@Url.Action("CreateChildWallet","Wallet",new {address=item.address })"></a>
+                                        <a class="btn btn-warning mdi mdi-wallet-membership" data-toggle="tooltip" data-placement="top" title="List wallet user" href="@Url.Action("ChildWallet","Wallet",new {address=item.address ,page = 1 })"></a>
+                                        <a class="btn btn-behance mdi mdi-wallet-travel" data-toggle="tooltip" data-placement="top" title="Infor wallet" href="@Url.Action("InforWallet","Wallet",new {address=item.address })"></a>
+                                        <a class="btn btn-light mdi mdi-web" data-toggle="tooltip" data-placement="top" title="Api callback transaction" href="@Url.Action("ApiCallbackWallet","Wallet",new {address=item.address })"></a>
+                                        <a class="btn btn-danger mdi mdi-delete" data-toggle="tooltip" data-placement="top" title="Delete project" href="@Url.Action("DeleteWallet","Wallet",new {address=item.address })"></a>
+                                    }
                                 </td>
                             </tr>
                         }

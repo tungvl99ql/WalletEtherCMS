@@ -27,10 +27,66 @@
                 </div>
             </div>
 
-            <a href="@Url.Action("Upgrade","Account")" class="btn btn-warning me-2">Upgrade Pro</a>
+                <div class="form-group row">
+                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Hide seedphrase</label>
+                    <a id="hide" class="btn btn-success me-2" onclick="change()">Is On</a>
+                </div>
+
+                <a href="@Url.Action("Changepass","Account")" class="btn btn-success me-2">Change Password</a>
+                <a href="@Url.Action("Upgrade","Account")" class="btn btn-warning me-2">Upgrade Plan</a>
             @*<button class="btn btn-dark">Cancel</button>*@
         </form>
         </div>
     </div>
 </div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log("hideinforwallet=>", '@data.hideinforwallet');
+        const myLink = document.getElementById("hide");
+        if ('@data.hideinforwallet' == "True") {
+            const myLink = document.getElementById("hide");
+            myLink.classList.add("btn-success");
+            myLink.classList.remove("btn-danger");
+            myLink.textContent = "IS ON"
+
+        } else {
+            console.log("false");
+            const myLink = document.getElementById("hide");
+            myLink.classList.add("btn-danger");
+            myLink.classList.remove("btn-success");
+            myLink.textContent = "IS OFF"
+        }
+    });
+
+    function change(){
+
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("HidePhrase")",
+            async: true,
+            success: function (data) {
+                console.log("data=>>", data)
+                if (data.hideinforwallet) {
+                    console.log("true");
+
+                    const myLink = document.getElementById("hide");
+                    myLink.classList.add("btn-success");
+                    myLink.classList.remove("btn-danger");
+                    myLink.textContent = "IS ON"
+
+                } else {
+                    console.log("false");
+
+                    const myLink = document.getElementById("hide");
+                    myLink.classList.add("btn-danger");
+                    myLink.classList.remove("btn-success");
+                    myLink.textContent = "IS OFF"
+                }
+            }
+        });
+    }
+
+</script>
 

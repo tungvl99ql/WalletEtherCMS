@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "_Layout";
+}
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Create Wallet</h4>
+            <div class="form-group">
+                <label for="exampleInputEmail1">User Name</label>
+                <input type="text" class="form-control" id="name" placeholder=". . .">
+            </div>
+            <button onclick="Create()" class="btn btn-primary mr-2">Create manager</button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function Create() {
+        let name = document.getElementById("name").value;
+
+        if (name.length > 5) {
+            let param = {
+                'username': name,
+            };
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("Createmanagerpost")",
+                data: param,
+                async: true,
+                success: function (data) {
+                    console.log("data", data)
+                    if (data.success) {
+                        location.href = '/Account/Listmanager';
+                    } else {
+                        alert(data.message)
+                    }
+                }
+            });
+       }else{
+           alert("Project name not null!");
+       }
+    }
+</script>
