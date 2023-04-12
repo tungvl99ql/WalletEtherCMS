@@ -27,9 +27,12 @@ namespace CMSWallet.Controllers
         {
             return View();
         }
-        public IActionResult Listmanager()
+        public async Task<IActionResult> Listmanager()
         {
-            return View();
+            var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            var response = await CallAPI.Get(appsetting.API_URL + "users/listManager", token);
+            var res = JsonConvert.DeserializeObject<ResultList<listManager>>(response);
+            return View(res.Data);
         }
         public IActionResult Createmanager()
         {

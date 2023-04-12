@@ -1,1 +1,38 @@
-﻿
+﻿@using CMSWallet;
+@{
+    List<listManager> ls = Model;
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">List Wallet</h4>
+        <p class="card-description">
+            @*Add class <code>.table</code>*@
+        </p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="">
+                        <th style="color:white">UserName</th>
+                        <th style="color:white">Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in ls)
+                        {
+                            <tr>
+                                <td style="color:white">@item.username</td>
+                                <td>
+                                    <a class="btn btn-danger mdi mdi-delete" data-toggle="tooltip" data-placement="top" title="Delete project" href="@Url.Action("Delete","Manager",new {address=item.username })"></a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

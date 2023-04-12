@@ -71,8 +71,13 @@
                 async: true,
                 success: function (data) {
                     console.log("data", data)
-                    var str = "cập nhật thành công " + data.data.length + " giao dịch bị lỡ";
-                    alert(str);
+                    if(data.success == true){
+                        var str = "cập nhật thành công " + data.data.length + " giao dịch bị lỡ";
+                        alert(str);
+                    }else{
+                        alert(data.message);
+                    }
+                   
                 }
             });
         } else {

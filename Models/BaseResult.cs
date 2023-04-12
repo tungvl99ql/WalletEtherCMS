@@ -66,6 +66,12 @@ namespace CMSWallet.Models
     {
         public bool hideinforwallet { get; set; }
     }
+
+    public class listManager
+    {
+        public string _id { get; set; }
+        public string username { get; set; }
+    }
     public class Profile
     {
         public string _id { get; set; }

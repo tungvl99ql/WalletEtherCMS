@@ -380,3 +380,7 @@ E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Account\Upgrade.cshtml.g
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Wallet\DeleteWallet.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Transaction\index2.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Account\AdvanceSetting.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Account\Changepass.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Account\Createmanager.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Account\Listmanager.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Transaction\Miss.cshtml.g.cs
