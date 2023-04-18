@@ -37,13 +37,44 @@ namespace CMSWallet.Controllers
             var res = JsonConvert.DeserializeObject<BaseResult<DataLogin>>(response);
             if (res.Success)
             {
-                Debug.WriteLine(res.Data.accesstoken);
-                HttpContext.Session.SetString("Token", res.Data.accesstoken);
-                HttpContext.Session.SetString("UserName", username);
-                HttpContext.Session.SetString("Role", res.Data.role.ToString());
-                HttpContext.Session.SetString("EndToken", DateTime.Now.AddHours(1).ToString());
+                if (res.Data.accesstoken != null)
+                {
+                    Debug.WriteLine(res.Data.accesstoken);
+                    HttpContext.Session.SetString("Token", res.Data.accesstoken);
+                    HttpContext.Session.SetString("UserName", username);
+                    HttpContext.Session.SetString("Role", res.Data.role.ToString());
+                    HttpContext.Session.SetString("EndToken", DateTime.Now.AddHours(1).ToString());
+                }
+                else
+                {
+                    Debug.WriteLine("xác thực 2 bước!");
+                }
             }
-            return Json(response);
+            return Json(res);
+        }
+
+
+        [HttpPost]
+        public async Task<JsonResult> Login2(string username, string otp)
+        {
+            var response = await CallAPI.PostAsync(appsetting.API_URL + "users/login2", new Login2body { username = username, token = otp });
+            var res = JsonConvert.DeserializeObject<BaseResult<DataLogin>>(response);
+            if (res.Success)
+            {
+                if (res.Data.accesstoken != null)
+                {
+                    Debug.WriteLine(res.Data.accesstoken);
+                    HttpContext.Session.SetString("Token", res.Data.accesstoken);
+                    HttpContext.Session.SetString("UserName", username);
+                    HttpContext.Session.SetString("Role", res.Data.role.ToString());
+                    HttpContext.Session.SetString("EndToken", DateTime.Now.AddHours(1).ToString());
+                }
+                else
+                {
+                    Debug.WriteLine("xác thực 2 bước!");
+                }
+            }
+            return Json(res);
         }
 
         [HttpPost]
@@ -73,6 +104,11 @@ namespace CMSWallet.Controllers
     {
        public string username { get; set; }
        public string password { get; set; }
+    }
+    public class Login2body
+    {
+        public string username { get; set; }
+        public string token { get; set; }
     }
     public class Regbody
     {

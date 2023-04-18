@@ -1,41 +1,68 @@
 ﻿@{
     Profile data = Model;
 }
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Profile</h4>
+                @*<p class="card-description"> Horizontal form layout </p>*@
+                <form class="forms-sample">
+                    <div class="form-group row">
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-9">
+                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">@data.username</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Max project</label>
+                        <div class="col-sm-9">
+                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">@data.maxwallet</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Max wallet child</label>
+                        <div class="col-sm-9">
+                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">@data.maxwalletchild</label>
+                        </div>
+                    </div>
 
-<div class="col-md-6 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Profile</h4>
-            @*<p class="card-description"> Horizontal form layout </p>*@
-        <form class="forms-sample">
-            <div class="form-group row">
-                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Username</label>
-                <div class="col-sm-9">
-                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">@data.username</label>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Max project</label>
-                <div class="col-sm-9">
-                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">@data.maxwallet</label>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Max wallet child</label>
-                <div class="col-sm-9">
-                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">@data.maxwalletchild</label>
-                </div>
-            </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Hide seedphrase</label>
+                        <a id="hide" class="btn btn-success me-2" onclick="change()">Is On</a>
+                    </div>
 
-                <div class="form-group row">
-                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Hide seedphrase</label>
-                    <a id="hide" class="btn btn-success me-2" onclick="change()">Is On</a>
-                </div>
+                    @if (string.IsNullOrEmpty(data.authentsecret))
+                    {
+                        <div class="form-group row">
+                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Google Authenticator</label>
+                            <a id="hide" class="btn btn-danger me-2" onclick="getkey()">IS OFF</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group row">
+                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Google Authenticator</label>
+                            <a id="hide" class="btn btn-success me-2">IS ON</a>
+                        </div>
+                    }
+                    <a href="@Url.Action("Changepass","Account")" class="btn btn-success me-2">Change Password</a>
+                    <a href="@Url.Action("Upgrade","Account")" class="btn btn-warning me-2">Upgrade Plan</a>
+                    @*<button class="btn btn-dark">Cancel</button>*@
+                </form>
+            </div>
+        </div>
+    </div>
 
-                <a href="@Url.Action("Changepass","Account")" class="btn btn-success me-2">Change Password</a>
-                <a href="@Url.Action("Upgrade","Account")" class="btn btn-warning me-2">Upgrade Plan</a>
-            @*<button class="btn btn-dark">Cancel</button>*@
-        </form>
+    <div class="col-md-6 grid-margin stretch-card" id="qrcode" style="display:none">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">QR code</h4>
+                <p class="card-description"> Mã qrcode chỉ kích hoạt 1 lần,lần sau sẽ không thể lấy lại </p>
+                <form class="forms-sample">
+                    <div id="img-container"></div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -60,7 +87,7 @@
         }
     });
 
-    function change(){
+    function change() {
 
         $.ajax({
             type: 'GET',
@@ -84,6 +111,30 @@
                     myLink.classList.remove("btn-success");
                     myLink.textContent = "IS OFF"
                 }
+            }
+        });
+    }
+
+    function getkey() {
+
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("GetKeyAuthent")",
+            async: true,
+            success: function (data) {
+                console.log("data=>>", data);
+                if (data.success){
+                    const img = new Image();
+                    img.src = data.data.qrcode;
+                    // Thêm ảnh vào trong một thẻ <img>
+                    const imgContainer = document.getElementById("img-container");
+                    imgContainer.appendChild(img);
+
+                    document.getElementById("qrcode").style.display = "block";
+                }else{
+                    alert(data.message);
+                }
+               
             }
         });
     }

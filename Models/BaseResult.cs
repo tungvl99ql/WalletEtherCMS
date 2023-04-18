@@ -67,6 +67,11 @@ namespace CMSWallet.Models
         public bool hideinforwallet { get; set; }
     }
 
+    public class Qrcode
+    {
+        public string qrcode { get; set; }
+    }
+
     public class listManager
     {
         public string _id { get; set; }
@@ -76,6 +81,7 @@ namespace CMSWallet.Models
     {
         public string _id { get; set; }
         public string username { get; set; }
+        public string authentsecret { get; set; }
         public int maxwallet { get; set; }
         public int maxwalletchild { get; set; }
         public bool hideinforwallet { get; set; }

@@ -70,6 +70,15 @@ namespace CMSWallet.Controllers
             return Json(res.Data);
         }
 
+
+        public async Task<IActionResult> GetKeyAuthent()
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            var response = await CallAPI.Get(appsetting.API_URL + "users/GenKeyAuthent", token);
+            var res = JsonConvert.DeserializeObject<BaseResult<Qrcode>>(response);
+            return Json(res);
+        }
+
         public async Task<IActionResult> changepassPost(string oldpass,string newpass)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
