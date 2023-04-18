@@ -60,7 +60,13 @@
                 <h4 class="card-title">QR code</h4>
                 <p class="card-description"> Mã qrcode chỉ kích hoạt 1 lần,lần sau sẽ không thể lấy lại </p>
                 <form class="forms-sample">
-                    <div id="img-container"></div>
+                    <div class="form-group row" id="img-container"></div>
+                    <div class="form-group">
+                        <label>Mã xác thực: </label>
+                        <input id="token" type="number" class="form-control p_input">
+                    </div>
+
+                    <a onclick="xacthuc()" class="btn btn-success me-2">Xác thực</a>
                 </form>
             </div>
         </div>
@@ -135,6 +141,30 @@
                     alert(data.message);
                 }
                
+            }
+        });
+    }
+
+    function xacthuc() {
+        let token = document.getElementById("token").value;
+
+        let param = {
+            'tokenkey': token,
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("Xacthuc")",
+            data: param,
+            async: true,
+            success: function (data) {
+                console.log("data=>>", data);
+                if (data.success){
+                    alert(data.message);
+                }else{
+                    alert(data.message);
+                }
+
             }
         });
     }

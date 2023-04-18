@@ -79,6 +79,14 @@ namespace CMSWallet.Controllers
             return Json(res);
         }
 
+        public async Task<IActionResult> Xacthuc(string tokenkey)
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            var response = await CallAPI.Post(appsetting.API_URL + "users/Xacthuckey", token,new xacthuckeybody { token = tokenkey });
+            var res = JsonConvert.DeserializeObject<BaseResult<Qrcode>>(response);
+            return Json(res);
+        }
+
         public async Task<IActionResult> changepassPost(string oldpass,string newpass)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
@@ -105,6 +113,10 @@ namespace CMSWallet.Controllers
     {
         public string oldpass { get; set; }
         public string newpass { get; set; }
+    }
+    public class xacthuckeybody
+    {
+        public string token { get; set; }
     }
 
     public class createmanagerbody
