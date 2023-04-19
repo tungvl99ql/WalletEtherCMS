@@ -27,9 +27,9 @@
                         foreach (var item in ls)
                         {
                             <tr>
-                                <td><a style="color:white" onclick="openTx('@item.hash')"> @Exten.Tinyhash(item.hash)</a> </td>
-                                <td style="color:white">@Exten.Tinyhash(item.From)</td>
-                                <td style="color:white">@Exten.Tinyhash(item.To)</td>
+                                <td style="color:white"> <a style="text-decoration: none;color:white" href="https://bscscan.com/tx/@item.hash" target="_blank">@Exten.Tinyhash(item.hash)</a></td>
+                                <td style="color:white"> <a style="text-decoration: none;color:white" href="https://bscscan.com/address/@item.From" target="_blank">@Exten.Tinyhash(item.From)</a></td>
+                                <td style="color:white"> <a style="text-decoration: none;color:white" href="https://bscscan.com/address/@item.To" target="_blank">@Exten.Tinyhash(item.To)</a></td>
                                 <td style="color:white">@item.Amount</td>
                                 @if (item.token == "USDT_TESTNET" || item.token == "USDT")
                                 {
@@ -58,7 +58,7 @@
                                     <td><a class="btn btn-danger">@item.callbackstatus</a></td>
                                 }
 
-                                <td style="color:white">@item.Createddate  ></td>
+                                <td style="color:white">@item.Createddate</td>
                                 <td>
                                     @if (item.callbackstatus == false)
                                     {
@@ -100,7 +100,7 @@
 <script>
 
     function openTx(hash) {
-        var url = "https://testnet.bscscan.com/tx/" + hash;
+        var url = "https://bscscan.com/tx/" + hash;
         console.log("url=>", url);
         window.open(url, '_blank').focus();
     }

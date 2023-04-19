@@ -1118,3 +1118,4 @@ E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Account\Changepass.cshtml.
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Account\Createmanager.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Account\Listmanager.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Transaction\Miss.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Debug\net5.0\Razor\Views\Wallet\TransferOther.cshtml.g.cs

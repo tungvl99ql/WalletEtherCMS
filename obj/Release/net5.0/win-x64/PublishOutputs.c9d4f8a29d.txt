@@ -936,7 +936,6 @@ E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\lib\jquer
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\lib\jquery\dist\jquery.min.map
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\lib\jquery\LICENSE.txt
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\appsettings.Development.json
-E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\appsettings.json
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\CMSWallet.dll
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\CMSWallet.deps.json
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\PubTmp\Out\CMSWallet.runtimeconfig.json

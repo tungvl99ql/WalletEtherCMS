@@ -1,0 +1,328 @@
+﻿
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Transfer token to other wallet</h4>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">From:</label>
+                    <input type="text" class="form-control" style="color:black" disabled id="addressFrom" value="@ViewData["address"]" placeholder=". . .">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">To:</label>
+                    <input type="text" class="form-control" id="addressTo" placeholder=". . .">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Password:</label>
+                    <input type="text" class="form-control" id="pass" placeholder=". . .">
+                </div>
+                <button onclick="Transfer()" id="usdt1" class="btn btn-success mr-2">Transfer USDT </button>
+                <button onclick="Transfer()" id="usdc1" class="btn btn-primary mr-2">Transfer USDC </button>
+                <button onclick="Transfer()" id="busd1" class="btn btn-warning mr-2">Transfer BUSD </button>
+                <button onclick="Transfer()" id="usdttn1" class="btn btn-success mr-2">Transfer USDT-TN </button>
+                @*<button class="btn btn-dark">Cancel</button>*@
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Balance of:  @ViewData["address"]</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img style="margin-left:5px; height:30px;width:30px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png">
+                                        </td>
+                                        <td style="color:white;font-weight:700">USDT</td>
+                                        <td class="text-right" id="usdt" style="color:white;font-weight:700"> $ 1500 </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img style="margin-left:5px; height:30px;width:30px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png">
+                                        </td>
+                                        <td style="color:white;font-weight:700">USDC</td>
+                                        <td class="text-right" id="usdc" style="color:white;font-weight:700"> 800 </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img style="margin-left:5px; height:30px;width:30px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/4687.png">
+                                        </td>
+                                        <td style="color:white;font-weight:700">BUSD</td>
+                                        <td class="text-right" id="busd" style="color:white;font-weight:700"> 760 </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img style="margin-left:5px; height:30px;width:30px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png">
+                                        </td>
+                                        <td style ="color:white;font-weight:700">USDT-TN</td>
+                                        <td class="text-right" id="usdttn"  style="color:white;font-weight:700"> 450 </td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <h4 id="bnb">Bnb: </h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", async function () {
+        var ERC20ABI = [
+        {
+            "constant": true,
+                "inputs": [],
+                    "name": "name",
+                        "outputs": [
+                            {
+                                "name": "",
+                                "type": "string"
+                            }
+                        ],
+                            "payable": false,
+                                "stateMutability": "view",
+                                    "type": "function"
+        },
+        {
+            "constant": false,
+                "inputs": [
+                    {
+                        "name": "_spender",
+                        "type": "address"
+                    },
+                    {
+                        "name": "_value",
+                        "type": "uint256"
+                    }
+                ],
+                    "name": "approve",
+                        "outputs": [
+                            {
+                                "name": "",
+                                "type": "bool"
+                            }
+                        ],
+                            "payable": false,
+                                "stateMutability": "nonpayable",
+                                    "type": "function"
+        },
+        {
+            "constant": true,
+                "inputs": [],
+                    "name": "totalSupply",
+                        "outputs": [
+                            {
+                                "name": "",
+                                "type": "uint256"
+                            }
+                        ],
+                            "payable": false,
+                                "stateMutability": "view",
+                                    "type": "function"
+        },
+        {
+            "constant": false,
+                "inputs": [
+                    {
+                        "name": "_from",
+                        "type": "address"
+                    },
+                    {
+                        "name": "_to",
+                        "type": "address"
+                    },
+                    {
+                        "name": "_value",
+                        "type": "uint256"
+                    }
+                ],
+                    "name": "transferFrom",
+                        "outputs": [
+                            {
+                                "name": "",
+                                "type": "bool"
+                            }
+                        ],
+                            "payable": false,
+                                "stateMutability": "nonpayable",
+                                    "type": "function"
+        },
+        {
+            "constant": true,
+                "inputs": [],
+                    "name": "decimals",
+                        "outputs": [
+                            {
+                                "name": "",
+                                "type": "uint8"
+                            }
+                        ],
+                            "payable": false,
+                                "stateMutability": "view",
+                                    "type": "function"
+        },
+        {
+            "constant": true,
+                "inputs": [
+                    {
+                        "name": "_owner",
+                        "type": "address"
+                    }
+                ],
+                    "name": "balanceOf",
+                        "outputs": [
+                            {
+                                "name": "balance",
+                                "type": "uint256"
+                            }
+                        ],
+                            "payable": false,
+                                "stateMutability": "view",
+                                    "type": "function"
+        },
+        {
+            "constant": true,
+                "inputs": [],
+                    "name": "symbol",
+                        "outputs": [
+                            {
+                                "name": "",
+                                "type": "string"
+                            }
+                        ],
+                            "payable": false,
+                                "stateMutability": "view",
+                                    "type": "function"
+        },
+        {
+            "constant": false,
+                "inputs": [
+                    {
+                        "name": "_to",
+                        "type": "address"
+                    },
+                    {
+                        "name": "_value",
+                        "type": "uint256"
+                    }
+                ],
+                    "name": "transfer",
+                        "outputs": [
+                            {
+                                "name": "",
+                                "type": "bool"
+                            }
+                        ],
+                            "payable": false,
+                                "stateMutability": "nonpayable",
+                                    "type": "function"
+        },
+        {
+            "constant": true,
+                "inputs": [
+                    {
+                        "name": "_owner",
+                        "type": "address"
+                    },
+                    {
+                        "name": "_spender",
+                        "type": "address"
+                    }
+                ],
+                    "name": "allowance",
+                        "outputs": [
+                            {
+                                "name": "",
+                                "type": "uint256"
+                            }
+                        ],
+                            "payable": false,
+                                "stateMutability": "view",
+                                    "type": "function"
+        },
+        {
+            "payable": true,
+                "stateMutability": "payable",
+                    "type": "fallback"
+        },
+        {
+            "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "name": "owner",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": true,
+                        "name": "spender",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "name": "value",
+                        "type": "uint256"
+                    }
+                ],
+                    "name": "Approval",
+                        "type": "event"
+        },
+        {
+            "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "name": "from",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": true,
+                        "name": "to",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "name": "value",
+                        "type": "uint256"
+                    }
+                ],
+                    "name": "Transfer",
+                        "type": "event"
+        }
+    ];
+        var address = `@Html.Raw(ViewData["address"])`;
+        var web3 = new Web3("https://bsc-dataseed1.binance.org/");
+
+        var balanceBnb = await web3.eth.getBalance(address);
+        document.getElementById("bnb").innerHTML = parseFloat(web3.utils.fromWei(balanceBnb, 'ether')).toFixed(5) + " bnb";
+
+        
+        const contract = new web3.eth.Contract(ERC20ABI, "0x55d398326f99059ff775485246999027b3197955");
+        var balanceOfEther = await contract.methods.balanceOf(address).call();
+        console.log("balanceOfEther=>", web3.utils.fromWei(balanceOfEther, 'ether'));
+        document.getElementById("usdt").textContent = parseFloat(web3.utils.fromWei(balanceOfEther, 'ether')).toFixed(3) + " $";
+
+        const contract1 = new web3.eth.Contract(ERC20ABI, "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d");
+        var balanceOfEther1 = await contract1.methods.balanceOf(address).call();
+        document.getElementById("usdc").textContent = parseFloat(web3.utils.fromWei(balanceOfEther1, 'ether')).toFixed(3) + " $";
+
+        
+        const contract2 = new web3.eth.Contract(ERC20ABI, "0xe9e7cea3dedca5984780bafc599bd69add087d56");
+        var balanceOfEther2 = await contract2.methods.balanceOf(address).call();
+        document.getElementById("busd").textContent = parseFloat(web3.utils.fromWei(balanceOfEther2, 'ether')).toFixed(3) + " $";
+    });
+</script>
+<script src="/js/web3.min.js"></script>

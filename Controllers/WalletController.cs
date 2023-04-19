@@ -12,6 +12,7 @@ namespace CMSWallet.Controllers
 {
     public class WalletController : Controller
     {
+        
         private readonly AppSettings appsetting;
         private readonly IHttpContextAccessor _httpContextAccessor;
         public WalletController(IOptions<AppSettings> options, IHttpContextAccessor httpContextAccessor)
@@ -28,6 +29,13 @@ namespace CMSWallet.Controllers
             var res = JsonConvert.DeserializeObject<BaseResult<Datalistwallet>>(response);
             //Debug.WriteLine(res);
             return View(res.Data.listwallet);
+        }
+
+        // rút từ ví project về 1 ví khác
+        public async Task<IActionResult> TransferOther(string address)
+        {
+            ViewData["address"] = address;
+            return View();
         }
 
         public IActionResult ImportWallet()
