@@ -98,6 +98,21 @@ namespace CMSWallet.Controllers
             return View(res.Data.listwalletchild);
         }
 
+
+        [HttpPost]
+        public async Task<JsonResult> Transferto(string address,string password,string toaddress,string value,string tokenname)
+        {
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/TransferTo", _httpContextAccessor.HttpContext.Session.GetString("Token"), new transfertoBody { 
+                address = address,
+                password = password,
+                recipientaddress = toaddress,
+                value = value,
+                tokenName = tokenname
+            });
+            var res = JsonConvert.DeserializeObject<BaseResult<Withdrawone>>(response);
+            return Json(res);
+        }
+
         [HttpPost] 
         public async Task<JsonResult> Create(string projectname)
         {
@@ -202,5 +217,15 @@ namespace CMSWallet.Controllers
         public string address { get; set; }
         public string password { get; set; }
         public string projectname { get; set; }
+    }
+
+    public class transfertoBody
+    {
+        public string address { get; set; }
+        public string password { get; set; }
+        public string recipientaddress { get; set; }
+        public string tokenName { get; set; }
+        public string value { get; set; }
+        
     }
 }
