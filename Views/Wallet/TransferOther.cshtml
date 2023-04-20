@@ -1,4 +1,8 @@
-﻿
+﻿<div style="margin-bottom:20px" class="col">
+
+    <a class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Create wallet user" href="@Url.Action("RequestTransfer","Wallet",new {address= ViewData["address"]})">Request token transfer  </a>
+    <a class="btn btn-info " data-toggle="tooltip" data-placement="top" title="Create wallet user" href="@Url.Action("HisTransfer","Wallet",new {address= ViewData["address"]})"> History token transfer  </a>
+</div>
 <div class="row">
     <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
@@ -11,6 +15,10 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">To:</label>
                     <input type="text" class="form-control" id="addressTo" placeholder=". . .">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Value:</label>
+                    <input type="number" class="form-control" id="value" placeholder=". . .">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Password:</label>
@@ -400,17 +408,13 @@
         var addressFrom = document.getElementById("addressFrom").value;
         var addressTo = document.getElementById("addressTo").value;
         var pass = document.getElementById("pass").value;
+        var value = document.getElementById("value").value;
 
         var web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545/");
         var a = web3.utils.checkAddressChecksum(addressTo);
         if (a == true) {
             if (pass.length >= 5) {
                 document.getElementById("loading-" + tokenname).style.display = "block";
-
-
-
-
-                var value = 1;
 
                 let param = {
                     'address': addressFrom,
@@ -434,7 +438,10 @@
                             modal.show();
                         } else {
                             content.innerHTML = data.data.message;
-                            document.getElementById("viewtx").style.display = "block";
+                            
+                            if (data.txhash != null) {
+                                document.getElementById("viewtx").style.display = "block";
+                            }
                             txhash = data.data.txhash;
                             modal.show();
                             // cap nhat lai so du cac token
@@ -449,8 +456,6 @@
         } else {
             alert("sai địa chỉ nhận!");
         }
-
-
     }
     function viewTX() {
         var URL = "https://bscscan.com/tx/" + txhash;

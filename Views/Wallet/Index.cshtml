@@ -39,9 +39,10 @@
                                 <td style="color:white">@item.usdt_testnet</td>
                                 <td style="color:white">@item.child</td>
                                 <td>
+                                    <a class="btn btn-info mdi mdi-cash-multiple" data-toggle="tooltip" data-placement="top" title="Transfer to another wallet" href="@Url.Action("TransferOther","Wallet",new {address=item.address })"></a>
+
                                     @if (role == 1)
                                     {
-                                        <a class="btn btn-info mdi mdi-cash-multiple" data-toggle="tooltip" data-placement="top" title="Transfer to another wallet" href="@Url.Action("TransferOther","Wallet",new {address=item.address })"></a>
 
                                         <a class="btn btn-success mdi mdi-wallet" data-toggle="tooltip" data-placement="top" title="Create wallet user" href="@Url.Action("CreateChildWallet","Wallet",new {address=item.address })"></a>
                                         //<a class="btn btn-warning mdi mdi-wallet-membership" data-toggle="tooltip" data-placement="top" title="List wallet user" href="@Url.Action("ChildWallet","Wallet",new {address=item.address ,page = 1 })"></a>

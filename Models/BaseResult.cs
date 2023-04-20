@@ -48,7 +48,11 @@ namespace CMSWallet.Models
         public string? txhash { get; set; }
         public string message { get; set; }
     }
-
+    public class DataRes
+    {
+        public bool status { get; set; }
+        public Withdrawone data { get; set; }
+    }
     public class Sendetherresult
     {
         public string address { get; set; }
@@ -126,6 +130,36 @@ namespace CMSWallet.Models
         public double usdt_testnet { get; set; }
     }
 
+    public class HistransferTo
+    {
+        public string _id { get; set; }
+        public string txhash { get; set; }
+        public string address { get; set; }
+        public string to { get; set; }
+        public int value { get; set; }
+        public string token { get; set; }
+        public bool status { get; set; }
+        public string message { get; set; }
+        public DateTime createddate { get; set; }
+        public string user { get; set; }
+        public string? manager { get; set; }
+        public int chainId { get; set; }
+    }
+
+    public class DataListRequestTransfer
+    {
+        public string _id { get; set; }
+        public string address { get; set; }
+        public string to { get; set; }
+        public float value { get; set; }
+        public string token { get; set; }
+        public int status { get; set; }
+        public string message { get; set; }
+        public DateTime createddate { get; set; }
+        public string user { get; set; }
+        public string manager { get; set; }
+        public int chainId { get; set; }
+    }
 
     public class Datalistwalletchild
     {

@@ -1,0 +1,113 @@
+﻿@using CMSWallet;
+@{
+    List<HistransferTo> ls = Model;
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">History Transfer</h4>
+        <p class="card-description">
+            @*Add class <code>.table</code>*@
+        </p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="">
+                        <th style="color:white">TxHash</th>
+                        <th style="color:white">From</th>
+                        <th style="color:white">To</th>
+                        <th style="color:white">Value</th>
+                        <th style="color:white">Token</th>
+                        <th style="color:white">Status</th>
+                        <th style="color:white">Message</th>
+                        <th style="color:white">User</th>
+                        <th style="color:white">Manager</th>
+                        <th style="color:white">CreatedDate</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in ls)
+                        {
+                            <tr>
+                                <td style="color:white"> <a style="text-decoration: none;color:white" href="https://bscscan.com/tx/@item.txhash" target="_blank">@Exten.Tinyhash(item.txhash)</a></td>
+                                <td style="color:white"> <a style="text-decoration: none;color:white" href="https://bscscan.com/address/@item.address" target="_blank">@Exten.Tinyhash(item.address)</a></td>
+                                <td style="color:white"> <a style="text-decoration: none;color:white" href="https://bscscan.com/address/@item.to" target="_blank">@Exten.Tinyhash(item.to)</a></td>
+                                <td style="color:white"> <a style="text-decoration: none;color:white"> @item.value</a></td>
+                                @if (item.token == "USDT_TESTNET" || item.token == "USDT")
+                                {
+                                    <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"></td>
+                                }
+                                else if (item.token == "USDC")
+                                {
+                                    <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"></td>
+                                }
+                                else if (item.token == "BUSD")
+                                {
+                                    <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/4687.png"></td>
+                                }
+                                else if (item.token == "DAI")
+                                {
+                                    <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/4943.png"></td>
+                                }
+                                <td style="color:white">@item.createddate</td>
+                                @if (item.status)
+                                {
+                                    <td> <a class="btn btn-info"> Success </a></td>
+
+                                }
+                                else
+                                {
+                                    <td><a class="btn btn-success"> Faile  </a></td>
+                                }
+                                <td style="color:white"> <a style="text-decoration: none;color:white"> @item.message</a></td>
+                                <td style="color:white"> <a style="text-decoration: none;color:white"> @item.user</a></td>
+                                <td style="color:white"> <a style="text-decoration: none;color:white"> @item.manager</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top:20px">
+    @* <a class="mdi mdi-arrow-left"></a>
+    <h3>3</h3>
+
+    <a class="mdi mdi-arrow-right"></a>*@
+
+    <div class="template-demo">
+        @if (int.Parse(ViewData["page"].ToString()) > 1)
+        {
+            <a href="@Url.Action("HisTransfer","Wallet",new {address= ViewData["address"] ,page = int.Parse(ViewData["page"].ToString()) -1 })" class="mdi mdi-arrow-left"></a>
+        }
+        else
+        {
+            <a class="mdi mdi-arrow-left"></a>
+        }
+        <a class="">@ViewData["page"]</a>
+        <a href="@Url.Action("HisTransfer","Wallet",new {address= ViewData["address"] ,page = int.Parse(ViewData["page"].ToString())+1 })" class="mdi mdi-arrow-right"></a>
+    </div>
+</div>
+
+
+
+
+<script>
+    function NextorPrePage(v) {
+        var address = @Html.Raw(Json.Serialize(ViewData["address"]));
+        var page = @ViewData["page"];
+        if (v == -1) {
+            console.log("pre page : ", address, page);
+
+        } else {
+            console.log("next page: ", address, page);
+        }
+    }
+</script>
+
+
+

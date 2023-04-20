@@ -98,6 +98,40 @@ namespace CMSWallet.Controllers
             return View(res.Data.listwalletchild);
         }
 
+        public async Task<IActionResult> RequestTransfer(string address, int page = 1) //  danh sach lenh chuyen
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/ListTransferrquest", token, new getlistchildwalletbody { address = address, page = page });
+            
+            var res = JsonConvert.DeserializeObject<ResultList<DataListRequestTransfer>>(response);
+            ViewData["address"] = address;
+            ViewData["page"] = page;
+            return View(res.Data);
+        }
+
+        public async Task<IActionResult> HisTransfer(string address, int page = 1) //  lich su chuyen token sang tk khac
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/HisTransferother", token, new getlistchildwalletbody { address = address, page = page });
+
+            var res = JsonConvert.DeserializeObject<ResultList<HistransferTo>>(response);
+            ViewData["address"] = address;
+            ViewData["page"] = page;
+            return View(res.Data);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> Accept_reject_requesttransfer(string id,string action)
+        {
+            var response = await CallAPI.Post(appsetting.API_URL + "wallet/AcceptOrRejectTransferrquest", _httpContextAccessor.HttpContext.Session.GetString("Token"),new acceptorrejectbody
+            {
+                id = id,
+                action = action
+            });
+            var res = JsonConvert.DeserializeObject<BaseResult<DataRes>>(response);
+            return Json(res);
+        }
+
 
         [HttpPost]
         public async Task<JsonResult> Transferto(string address,string password,string toaddress,string value,string tokenname)
@@ -196,7 +230,11 @@ namespace CMSWallet.Controllers
         public string phrase { get; set; }
         public string path { get; set; }
     }
-
+    public class acceptorrejectbody
+    {
+        public string id { get; set; }
+        public string action { get; set; }
+    }
     public class importwalletbody
     {
         public string phrase { get; set; }

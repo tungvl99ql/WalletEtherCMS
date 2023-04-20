@@ -1,0 +1,251 @@
+﻿@using CMSWallet;
+@{
+    List<DataListRequestTransfer> ls = Model;
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">History Transactions</h4>
+        <p class="card-description">
+            @*Add class <code>.table</code>*@
+        </p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="">
+                        <th style="color:white">From</th>
+                        <th style="color:white">To</th>
+                        <th style="color:white">Manager</th>
+                        <th style="color:white">Message</th>
+                        <th style="color:white">Value</th>
+                        <th style="color:white">Token</th>
+                        <th style="color:white">CreatedDate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in ls)
+                        {
+                            <tr>
+                                <td style="color:white"> <a style="text-decoration: none;color:white" href="https://bscscan.com/tx/@item.address" target="_blank">@Exten.Tinyhash(item.address)</a></td>
+                                <td style="color:white"> <a style="text-decoration: none;color:white" href="https://bscscan.com/address/@item.to" target="_blank">@Exten.Tinyhash(item.to)</a></td>
+                                <td style="color:white"> <a style="text-decoration: none;color:white"> @item.manager</a></td>
+                                <td style="color:white"> <a style="text-decoration: none;color:white"> @item.message</a></td>
+                                <td style="color:white">@item.value</td>
+                                @if (item.token == "USDT_TESTNET" || item.token == "USDT")
+                                {
+                                    <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"></td>
+                                }
+                                else if (item.token == "USDC")
+                                {
+                                    <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"></td>
+                                }
+                                else if (item.token == "BUSD")
+                                {
+                                    <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/4687.png"></td>
+                                }
+                                else if (item.token == "DAI")
+                                {
+                                    <td style="color:white">@item.token  <img style="margin-left:5px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/4943.png"></td>
+                                }
+                                <td style="color:white">@item.createddate</td>
+                                @if (item.status == 0)
+                                {
+                                    <td> <a class="btn btn-info"> Pending </a></td>
+
+                                }
+                                else if (item.status == 1)
+                                {
+                                    <td><a class="btn btn-success"> Accept  </a></td>
+                                }
+                                else if (item.status == 2)
+                                {
+                                    <td><a class="btn btn-danger"> Reject </a></td>
+                                }
+                                <td>
+                                    @if (item.status == 0)
+                                    {
+                                        <a style="display: -webkit-inline-box;" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="call api" onclick="Accept('@item.value','@item.token','@item.to','@item._id')">
+                                            <div id="accept-@item._id" style="width:15px;height:15px; display:none" class="spinner-border" role="status">
+                                            </div> Accept
+                                        </a>
+
+                                        <a style="display: -webkit-inline-box;" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="call api" onclick="Reject('@item.value','@item.token','@item.to','@item._id')">
+                                            <div id="reject-@item._id" style="width:15px;height:15px; display:none" class="spinner-border" role="status">
+                                            </div> Reject
+                                        </a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top:20px">
+    @* <a class="mdi mdi-arrow-left"></a>
+    <h3>3</h3>
+
+    <a class="mdi mdi-arrow-right"></a>*@
+
+    <div class="template-demo">
+        @if (int.Parse(ViewData["page"].ToString()) > 1)
+        {
+            <a href="@Url.Action("RequestTransfer","Wallet",new {address= ViewData["address"] ,page = int.Parse(ViewData["page"].ToString()) -1 })" class="mdi mdi-arrow-left"></a>
+        }
+        else
+        {
+            <a class="mdi mdi-arrow-left"></a>
+        }
+        <a class="">@ViewData["page"]</a>
+        <a href="@Url.Action("RequestTransfer","Wallet",new {address= ViewData["address"] ,page = int.Parse(ViewData["page"].ToString())+1 })" class="mdi mdi-arrow-right"></a>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Noti</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 id="content" style="line-height: 30px;">
+                    AHIHI
+                </h4>
+            </div>
+            <div class="modal-footer">
+                <button id="closee" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button onclick="PostAccept_reject('Accept')" style="display: none;" id="accept" type="button" class="btn btn-success">Accept</button>
+                <button onclick="PostAccept_reject('Reject')" style="display: none;" id="reject" type="button" class="btn btn-danger">Reject</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Noti</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 id="content2" style="line-height: 30px;">
+                    AHIHI
+                </h4>
+            </div>
+            <div class="modal-footer">
+                <button id="closee" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button onclick="viewTX()" style="display: none;" id="viewtx" type="button" class="btn btn-primary">View tx</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var id = "";
+
+    function viewTX() {
+        var URL = "https://bscscan.com/tx/" + txhash;
+        window.open(URL, '_blank');
+    }
+
+    function Accept(value,tokenname,to,_id){
+        id = _id;
+        var myModal = document.getElementById("exampleModal");
+        var modal = new bootstrap.Modal(myModal);
+        var content = document.getElementById("content");
+        content.innerHTML = "Xác nhận duyệt lệnh chuyển: " + value + " " + tokenname + " đến: " + to +"\n Không thể thay đổi khi xác nhận!";
+        document.getElementById("reject").style.display = "none";
+        document.getElementById("accept").style.display = "block";
+        modal.show();
+    }
+
+    function Reject(value, tokenname, to, _id) {
+        id = _id;
+        var myModal = document.getElementById("exampleModal");
+        var modal = new bootstrap.Modal(myModal);
+        var content = document.getElementById("content");
+        content.innerHTML = "Từ từ chối lệnh chuyển: " + value + " " + tokenname + " đến: " + to + "\n Không thể thay đổi khi xác nhận!";
+        document.getElementById("reject").style.display = "block";
+        document.getElementById("accept").style.display = "none";
+        modal.show();
+    }
+
+    function openTx(hash) {
+        var url = "https://bscscan.com/tx/" + hash;
+        console.log("url=>", url);
+        window.open(url, '_blank').focus();
+    }
+
+    function PostAccept_reject(action) {
+        let param = {
+            'id': id,
+            'action': action
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("Accept_reject_requesttransfer")",
+            data: param,
+            async: true,
+            success: function (data) {
+                console.log(data);
+                var myButton = document.getElementById('closee');
+                myButton.click();
+                
+               if(data.data != null){
+                    var myModal2 = document.getElementById("exampleModal2");
+                    var modal2 = new bootstrap.Modal(myModal2);
+                    var content2 = document.getElementById("content2");
+
+                    if (data.data.status == false) {
+                        console.log("111=>", data.data.data);
+                        content2.innerHTML = data.data.data.message;
+                        document.getElementById("viewtx").style.display = "none";
+                        modal2.show();
+                    } else {
+                        console.log("2222=>", data.data.data);
+                        content2.innerHTML = data.data.data.message;
+                        if (data.data.data.txhash != null) {
+                            document.getElementById("viewtx").style.display = "block";
+                        }
+                        txhash = data.data.data.txhash;
+                        modal2.show();
+                        // cap nhat lai so du cac token
+                    }
+               }else{
+                    alert(data.message);
+               }
+            }
+        });
+    }
+
+</script>
+
+<script>
+    function NextorPrePage(v) {
+        var address = @Html.Raw(Json.Serialize(ViewData["address"]));
+        var page = @ViewData["page"];
+        if (v == -1) {
+            console.log("pre page : ", address, page);
+
+        } else {
+            console.log("next page: ", address, page);
+        }
+    }
+</script>
+
+
+
