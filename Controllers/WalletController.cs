@@ -34,6 +34,7 @@ namespace CMSWallet.Controllers
         // rút từ ví project về 1 ví khác
         public async Task<IActionResult> TransferOther(string address)
         {
+            ViewData["role"] = _httpContextAccessor.HttpContext.Session.GetString("Role");
             ViewData["address"] = address;
             return View();
         }

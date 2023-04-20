@@ -1,6 +1,14 @@
-﻿<div style="margin-bottom:20px" class="col">
+﻿@using CMSWallet;
+@{
+    int role = int.Parse(ViewData["role"].ToString());
+}
 
-    <a class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Create wallet user" href="@Url.Action("RequestTransfer","Wallet",new {address= ViewData["address"]})">Request token transfer  </a>
+<div style="margin-bottom:20px" class="col">
+    @if (role == 1)
+    {
+        <a class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Create wallet user" href="@Url.Action("RequestTransfer","Wallet",new {address= ViewData["address"]})">Request token transfer  </a>
+
+    }
     <a class="btn btn-info " data-toggle="tooltip" data-placement="top" title="Create wallet user" href="@Url.Action("HisTransfer","Wallet",new {address= ViewData["address"]})"> History token transfer  </a>
 </div>
 <div class="row">
@@ -38,10 +46,10 @@
                     </div> Transfer BUSD
                 </a>
 
-                <a style="display: -webkit-inline-box;" class="btn btn-light" data-toggle="tooltip" data-placement="top" title="Withdraw to project wallet" onclick="Transfer('USDT_TESTNET')">
+              @*  <a style="display: -webkit-inline-box;" class="btn btn-light" data-toggle="tooltip" data-placement="top" title="Withdraw to project wallet" onclick="Transfer('USDT_TESTNET')">
                     <div id="loading-USDT_TESTNET" style="width:15px;height:15px; display:none" class="spinner-border" role="status">
                     </div> Transfer USDT-TN
-                </a>
+                </a>*@
                 @*<button class="btn btn-dark">Cancel</button>*@
             </div>
 
@@ -62,29 +70,29 @@
                                             <img style="margin-left:5px; height:30px;width:30px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png">
                                         </td>
                                         <td style="color:white;font-weight:700">USDT</td>
-                                        <td class="text-right" id="usdt" style="color:white;font-weight:700"> $ 1500 </td>
+                                        <td class="text-right" id="usdt" style="color:white;font-weight:700"> 0$ </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <img style="margin-left:5px; height:30px;width:30px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png">
                                         </td>
                                         <td style="color:white;font-weight:700">USDC</td>
-                                        <td class="text-right" id="usdc" style="color:white;font-weight:700"> 800 </td>
+                                        <td class="text-right" id="usdc" style="color:white;font-weight:700"> 0$ </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <img style="margin-left:5px; height:30px;width:30px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/4687.png">
                                         </td>
                                         <td style="color:white;font-weight:700">BUSD</td>
-                                        <td class="text-right" id="busd" style="color:white;font-weight:700"> 760 </td>
+                                        <td class="text-right" id="busd" style="color:white;font-weight:700"> 0$ </td>
                                     </tr>
-                                    <tr>
+                                   @* <tr>
                                         <td>
                                             <img style="margin-left:5px; height:30px;width:30px" src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png">
                                         </td>
                                         <td style="color:white;font-weight:700">USDT-TN</td>
                                         <td class="text-right" id="usdttn" style="color:white;font-weight:700"> 450 </td>
-                                    </tr>
+                                    </tr>*@
 
                                 </tbody>
                             </table>
@@ -353,49 +361,49 @@
             }
         ];
         var address = `@Html.Raw(ViewData["address"])`;
-        //var web3 = new Web3("https://bsc-dataseed1.binance.org/");
-        var web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545/");
+        var web3 = new Web3("https://bsc-dataseed1.binance.org/");
+        //var web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545/");
 
         var balanceBnb = await web3.eth.getBalance(address);
         document.getElementById("bnb").innerHTML = parseFloat(web3.utils.fromWei(balanceBnb, 'ether')).toFixed(5) + " bnb";
 
 
-        //const contract = new web3.eth.Contract(ERC20ABI, "0x55d398326f99059ff775485246999027b3197955");
-        //var balanceOfEther = await contract.methods.balanceOf(address).call();
-        //var _balanceOfEther = web3.utils.fromWei(balanceOfEther, 'ether');
-        //if (Number.isInteger(parseFloat(_balanceOfEther))) {
-        //    document.getElementById("usdt").textContent = parseFloat(_balanceOfEther).toFixed(0) + " $";
-        //}else{
-        //    document.getElementById("usdt").textContent = parseFloat(_balanceOfEther).toFixed(3) + " $";
-        //}
+        const contract = new web3.eth.Contract(ERC20ABI, "0x55d398326f99059ff775485246999027b3197955");
+        var balanceOfEther = await contract.methods.balanceOf(address).call();
+        var _balanceOfEther = web3.utils.fromWei(balanceOfEther, 'ether');
+        if (Number.isInteger(parseFloat(_balanceOfEther))) {
+            document.getElementById("usdt").textContent = parseFloat(_balanceOfEther).toFixed(0) + " $";
+        }else{
+            document.getElementById("usdt").textContent = parseFloat(_balanceOfEther).toFixed(3) + " $";
+        }
 
-        //const contract1 = new web3.eth.Contract(ERC20ABI, "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d");
-        //var balanceOfEther1 = await contract1.methods.balanceOf(address).call();
-        //var _balanceOfEther1 = web3.utils.fromWei(balanceOfEther1, 'ether');
-        //if (Number.isInteger(parseFloat(_balanceOfEther1))) {
-        //    document.getElementById("usdc").textContent = parseFloat(_balanceOfEther1).toFixed(0) + " $";
-        //} else {
-        //    document.getElementById("usdc").textContent = parseFloat(_balanceOfEther1).toFixed(3) + " $";
-        //}
+        const contract1 = new web3.eth.Contract(ERC20ABI, "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d");
+        var balanceOfEther1 = await contract1.methods.balanceOf(address).call();
+        var _balanceOfEther1 = web3.utils.fromWei(balanceOfEther1, 'ether');
+        if (Number.isInteger(parseFloat(_balanceOfEther1))) {
+            document.getElementById("usdc").textContent = parseFloat(_balanceOfEther1).toFixed(0) + " $";
+        } else {
+            document.getElementById("usdc").textContent = parseFloat(_balanceOfEther1).toFixed(3) + " $";
+        }
 
 
-        //const contract2 = new web3.eth.Contract(ERC20ABI, "0xe9e7cea3dedca5984780bafc599bd69add087d56");
-        //var balanceOfEther2 = await contract2.methods.balanceOf(address).call();
-        //var _balanceOfEther2 = web3.utils.fromWei(balanceOfEther2, 'ether');
-        //if (Number.isInteger(parseFloat(_balanceOfEther2))) {
-        //    document.getElementById("busd").textContent = parseFloat(_balanceOfEther2).toFixed(0) + " $";
-        //} else {
-        //    document.getElementById("busd").textContent = parseFloat(_balanceOfEther2).toFixed(3) + " $";
-        //}
-
-        const contract2 = new web3.eth.Contract(ERC20ABI, "0x84791a1e733b8513b02afaf3a54c0020807d70a1");
+        const contract2 = new web3.eth.Contract(ERC20ABI, "0xe9e7cea3dedca5984780bafc599bd69add087d56");
         var balanceOfEther2 = await contract2.methods.balanceOf(address).call();
         var _balanceOfEther2 = web3.utils.fromWei(balanceOfEther2, 'ether');
         if (Number.isInteger(parseFloat(_balanceOfEther2))) {
-            document.getElementById("usdttn").textContent = parseFloat(_balanceOfEther2).toFixed(0) + " $";
+            document.getElementById("busd").textContent = parseFloat(_balanceOfEther2).toFixed(0) + " $";
         } else {
-            document.getElementById("usdttn").textContent = parseFloat(_balanceOfEther2).toFixed(3) + " $";
+            document.getElementById("busd").textContent = parseFloat(_balanceOfEther2).toFixed(3) + " $";
         }
+
+        //const contract2 = new web3.eth.Contract(ERC20ABI, "0x84791a1e733b8513b02afaf3a54c0020807d70a1");
+        //var balanceOfEther2 = await contract2.methods.balanceOf(address).call();
+        //var _balanceOfEther2 = web3.utils.fromWei(balanceOfEther2, 'ether');
+        //if (Number.isInteger(parseFloat(_balanceOfEther2))) {
+        //    document.getElementById("usdttn").textContent = parseFloat(_balanceOfEther2).toFixed(0) + " $";
+        //} else {
+        //    document.getElementById("usdttn").textContent = parseFloat(_balanceOfEther2).toFixed(3) + " $";
+        //}
     }
 
 
@@ -410,7 +418,8 @@
         var pass = document.getElementById("pass").value;
         var value = document.getElementById("value").value;
 
-        var web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545/");
+        //var web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545/"); 
+        var web3 = new Web3("https://bsc-dataseed1.binance.org/");
         var a = web3.utils.checkAddressChecksum(addressTo);
         if (a == true) {
             if (pass.length >= 5) {

@@ -4,7 +4,7 @@
     {
         public static string Tinyhash(string hash)
         {
-            if(hash.Length > 10)
+            if(!string.IsNullOrEmpty(hash))
             {
                 string StartHash = hash.Substring(0, 6);
                 string EndHash = hash.Substring(hash.Length - 6, 6);
