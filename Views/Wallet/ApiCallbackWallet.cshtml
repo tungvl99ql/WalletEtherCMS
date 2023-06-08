@@ -1,74 +1,109 @@
 ﻿@{
     DataApicallback data = Model;
 }
-<div class="col-md-6 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Api call back</h4>
-            <p class="card-description">
-                [address] = address waller | [value] = token value | [hash] = hash transaction
-            </p>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Project Name</label>
-                <input type="text" class="form-control" id="projectname" placeholder="" value=" @data.projectname" >
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Address</label>
-                <input type="text" class="form-control" id="address" placeholder="" value=" @data.address" disabled style="color:darkblue">
-            </div>
-
-            <div class="form-group">
-                <label for="exampleInputEmail1">Url Api call back</label>
-                <input type="text" class="form-control" id="url" placeholder="" value="@data.urlcallback">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Body</label>
-                <textarea class="form-control" id="body" rows="4"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="exampleInputEmail1">Id chat Telegram</label>
-                <input type="text" class="form-control" id="idtelegram" placeholder="" value="@data.telegram">
-            </div>
-
-          @*  <div class="card">
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
             <div class="card-body">
+                <h4 class="card-title">Api call back</h4>
+                <p class="card-description">
+                    [address] = address waller | [value] = token value | [hash] = hash transaction
+                </p>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Param 1</label>
-                    <div class="row">
-                        <div class="form-group  col-md-3">
-                            <label for="exampleInputEmail1"></label>
-                            <input type="text" class="form-control" id="idtelegram" placeholder="param" value="">
-                        </div>
-                        <div class="form-group  col-md-3">
-                            <label for="exampleInputEmail1"></label>
-                            <input type="text" class="form-control" id="idtelegram" placeholder="value" value="">
-                        </div>
-                    </div>
+                    <label for="exampleInputEmail1">Project Name</label>
+                    <input type="text" class="form-control" id="projectname" placeholder="" value=" @data.projectname">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Param 1</label>
-                    <div class="row">
-                        <div class="form-group  col-md-3">
-                            <label for="exampleInputEmail1"></label>
-                            <input type="text" class="form-control" id="idtelegram" placeholder="param" value="">
-                        </div>
-                        <div class="form-group  col-md-3">
-                            <label for="exampleInputEmail1"></label>
-                            <input type="text" class="form-control" id="idtelegram" placeholder="value" value="">
-                        </div>
-                    </div>
+                    <label for="exampleInputEmail1">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="" value=" @data.address" disabled style="color:darkblue">
                 </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Url Api call back</label>
+                    <input type="text" class="form-control" id="url" placeholder="" value="@data.urlcallback">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Body</label>
+                    <textarea class="form-control" id="body" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Id chat Telegram</label>
+                    <input type="text" class="form-control" id="idtelegram" placeholder="" value="@data.telegram">
+                </div>
+
+                @*  <div class="card">
+                <div class="card-body">
+                <div class="form-group">
+                <label for="exampleInputEmail1">Param 1</label>
+                <div class="row">
+                <div class="form-group  col-md-3">
+                <label for="exampleInputEmail1"></label>
+                <input type="text" class="form-control" id="idtelegram" placeholder="param" value="">
+                </div>
+                <div class="form-group  col-md-3">
+                <label for="exampleInputEmail1"></label>
+                <input type="text" class="form-control" id="idtelegram" placeholder="value" value="">
+                </div>
+                </div>
+                </div>
+                <div class="form-group">
+                <label for="exampleInputEmail1">Param 1</label>
+                <div class="row">
+                <div class="form-group  col-md-3">
+                <label for="exampleInputEmail1"></label>
+                <input type="text" class="form-control" id="idtelegram" placeholder="param" value="">
+                </div>
+                <div class="form-group  col-md-3">
+                <label for="exampleInputEmail1"></label>
+                <input type="text" class="form-control" id="idtelegram" placeholder="value" value="">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>*@
+
+
+
+
+
+
+                <button onclick="Save()" class="btn btn-primary mr-2">Save</button>
+                <button class="btn btn-dark">Cancel</button>
             </div>
-            </div>*@
+        </div>
+    </div>
 
 
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Api server withdraw token</h4>
+                <p class="card-description">
+                    [address] = address game user  | [value] = token value 
+                </p>
+             
 
-           
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Url Api call back</label>
+                    <input type="text" class="form-control" id="url_gameserver" placeholder="" value="@data.urlcallback_withdraw">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Body</label>
+                    <textarea class="form-control" id="body_gameserver" rows="4"></textarea>
+                </div>
 
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Secert key</label>
+                    <input type="text" class="form-control" id="secret_gameserver" placeholder="" value="@data.secretkey_withdraw">
+                </div>
 
-            <button onclick="Save()" class="btn btn-primary mr-2">Save</button>
-            <button class="btn btn-dark">Cancel</button>
+                <pre>
+                CMS sẽ gọi sang api gameserver khi admin duyệt yêu cầu rút tiền.
+                Nếu server trả về thành công ,cms sẽ thực hiện chuyển token đến
+                địa  chỉ mà gameuser yêu cầu
+            </pre>
+            </div>
         </div>
     </div>
 </div>
@@ -108,10 +143,14 @@ Tìm kiếm trong telegram "@@Tungdepzai" và chat /id để lấy id
     </div>
 </div>
 
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const textarea = document.getElementById('body');
         textarea.value = `@Html.Raw(data.bodycontent)` ;
+
+        const textarea1 = document.getElementById('body_gameserver');
+        textarea1.value = `@Html.Raw(data.bodycontent_withdraw)`;
     });
 
 
@@ -122,12 +161,19 @@ Tìm kiếm trong telegram "@@Tungdepzai" và chat /id để lấy id
         let idtelegram = document.getElementById("idtelegram").value;
         let projectname = document.getElementById("projectname").value;
 
+        let urlgameserver = document.getElementById("url_gameserver").value;
+        let bodygameserver = document.getElementById("body_gameserver").value;
+        let secret_gameserver = document.getElementById("secret_gameserver").value;
+
         let param = {
             'projectname': projectname,
             'address': address,
             'url': url,
             'body': body,
-            'idtelegram': idtelegram
+            'idtelegram': idtelegram,
+            "url_gameserver": urlgameserver,
+            "body_gameserver": bodygameserver,
+            "secret_gameserver": secret_gameserver
         };
 
         $.ajax({

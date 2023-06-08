@@ -736,3 +736,6 @@ E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Account\Changepa
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Account\Createmanager.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Account\Listmanager.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Transaction\Miss.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Wallet\HisTransfer.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Wallet\RequestTransfer.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\win-x64\Razor\Views\Wallet\TransferOther.cshtml.g.cs

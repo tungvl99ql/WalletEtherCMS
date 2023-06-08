@@ -384,3 +384,6 @@ E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Account\Changepass.cshtm
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Account\Createmanager.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Account\Listmanager.cshtml.g.cs
 E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Transaction\Miss.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Wallet\HisTransfer.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Wallet\RequestTransfer.cshtml.g.cs
+E:\GITHUB\WalletEtherCMS\obj\Release\net5.0\Razor\Views\Wallet\TransferOther.cshtml.g.cs

@@ -226,6 +226,9 @@ namespace CMSWallet.Models
         public string projectname { get; set; }
         public string urlcallback { get; set; }
         public string bodycontent { get; set; }
+        public string urlcallback_withdraw { get; set; }
+        public string bodycontent_withdraw { get; set; }
+        public string secretkey_withdraw { get; set; }
         public string? telegram { get; set; }
     }
 
